@@ -1,0 +1,28 @@
+.boton:hover{
+    -fx-background-color: #7f0505;
+    -fx-text-fill: white;
+    
+}
+
+.usuario{
+    -fx-width:10px;
+    -fx-background-color: white;
+}
+
+.fotoUsuario{
+     -fx-background-image: url("../Imagenes/Fondo Usuario-01.png")
+}
+
+.textFieldLogin {
+    -fx-font-size: 14pt;
+    -fx-text-fill: white;
+}
+
+.btIniciarSesion{
+    -fx-background-color: #0a5a51;
+}
+
+.jfx-hamburger StackPane{
+    -fx-background-color: white;
+}
+

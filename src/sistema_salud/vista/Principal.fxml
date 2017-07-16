@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.PrincipalController">
+   <children>
+      <Pane layoutX="-2.0" layoutY="-58.0" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #0a5a51;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXDrawer fx:id="contenido" defaultDrawerSize="1000.0" direction="RIGHT" layoutY="50.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" />
+      <JFXDrawer fx:id="menuDesplegable" defaultDrawerSize="300.0" prefHeight="650.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="0.0" />
+      <JFXHamburger fx:id="menu" layoutX="14.0" layoutY="22.0" prefHeight="30.0" prefWidth="30.0" stylesheets="@../../css/style.css" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label fx:id="nombreUsuario" layoutX="677.0" layoutY="9.0" text="Nombre Usuario" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

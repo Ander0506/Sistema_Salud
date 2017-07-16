@@ -212,6 +212,9 @@ public class Sistema implements Serializable{
        if (UsuarioAdicionar == null) {
             throw new Exception("La columna no puede ser nulo");
         }
+       if (usuarios.contains(UsuarioAdicionar)) {
+            throw new Exception("Usuario ya existente");
+        }
         usuarios.add(UsuarioAdicionar);
     }    
     public Usuario RetornarUsuarioPorUser(String user){
