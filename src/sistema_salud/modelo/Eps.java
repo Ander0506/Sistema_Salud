@@ -7,35 +7,51 @@ package sistema_salud.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author andre
  */
-public class Eps implements Serializable{
-    
-    private String name;
-    private String code;
+public class Eps implements Serializable {
 
-    public Eps(String name, String code) {
-        this.name = name;
-        this.code = code;
+    private StringProperty name;
+    private StringProperty code;
+
+    public Eps(String name, String code) throws Exception {
+        if (name == null) {
+            throw new Exception("NAME No puede Ser nulo");
+        }
+         if (code == null) {
+            throw new Exception("CODE No puede Ser nulo");
+        }
+        this.name = new SimpleStringProperty(name);
+        this.code = new SimpleStringProperty(code);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws Exception {
+        if (name == null) {
+            throw new Exception("NAME No puede Ser nulo");
+        } else {
+            this.name.set(name); 
+        }
     }
 
     public String getCode() {
-        return code;
+        return code.get();
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCode(String code) throws Exception {
+        if (code == null) {
+            throw new Exception("CODE No puede Ser nulo");
+        } else {
+            this.code.set(code);
+        }
     }
 
     @Override
@@ -68,14 +84,5 @@ public class Eps implements Serializable{
     public String toString() {
         return "name: " + name + " code: " + code;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

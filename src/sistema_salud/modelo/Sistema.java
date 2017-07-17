@@ -171,7 +171,7 @@ public class Sistema implements Serializable{
         }
        return -1;
     }
-    public void EditarEps(String name, String code,Eps epsEditar){
+    public void EditarEps(String name, String code,Eps epsEditar) throws Exception{
        int pos = GetPosElementEps(epsEditar);
         epss.get(pos).setCode(code);
         epss.get(pos).setName(name);

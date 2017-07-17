@@ -6,6 +6,10 @@
 package sistema_salud.modelo;
 
 import java.util.Objects;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -13,112 +17,111 @@ import java.util.Objects;
  */
 public class Usuario {
     
-    public String nombre;
-    public String user;
-    public String apellidos;
-    public String id;
-    public String correo;
-    public String tipo;
-    public String sexo;
-    public Boolean estado;
-    public String password;
+    public StringProperty nombre;
+    public StringProperty user;
+    public StringProperty apellidos;
+    public StringProperty id;
+    public StringProperty correo;
+    public StringProperty tipo;
+    public StringProperty sexo;
+    public BooleanProperty estado;
+    public StringProperty password;
 
     public Usuario(String user, String password) throws Exception {
         if(user == null){ throw new Exception("El usuario no puede ser nulo"); }
         if(password == null){ throw new Exception("la contraseña no puede ser nula");}
  
-        this.user = user;
-        this.password = password;
-        this.estado = true;       
+        this.user = new SimpleStringProperty(user);
+        this.password = new SimpleStringProperty(password);
+        this.estado = new SimpleBooleanProperty(true);    
+    }
+
+    public String getNombre() {
+        return nombre.get();
+    }
+
+    public void setNombre(String nombre) throws Exception {
+        this.nombre.set(nombre);
     }
 
     public String getUser() {
-        return user;
+        return user.get();
     }
 
     public void setUser(String user) throws Exception {
-     if(user == null){ throw new Exception("El usuario no puede ser nulo"); }
-     else{
-        this.user = user;
-    }}
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) throws Exception {
-      if(password == null){ throw new Exception("la contraseña no puede ser nula");}
-      else{
-        this.password = password;
-    }
-    }
-    
-    public String getNombre() {
-        return nombre;
+        if (user == null) {
+            throw new Exception("USER No puede Ser nulo");
+        } else {
+            this.user.set(user);
+        }
     }
 
     public String getApellidos() {
-        return apellidos;
+        return apellidos.get();
+    }
+
+    public void setApellidos(String apellidos) throws Exception {
+        this.apellidos.set(apellidos);
     }
 
     public String getId() {
-        return id;
+        return id.get();
+    }
+
+    public void setId(String id) throws Exception {
+        this.id.set(id);
     }
 
     public String getCorreo() {
-        return correo;
+        return correo.get();
+    }
+
+    public void setCorreo(String correo) throws Exception {
+        this.correo.set(correo);
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo.get();
+    }
+
+    public void setTipo(String tipo) throws Exception {
+        this.tipo.set(tipo);
     }
 
     public String getSexo() {
-        return sexo;
+        return sexo.get();
+    }
+
+    public void setSexo(String sexo) throws Exception {
+        this.sexo.set(sexo);
     }
 
     public Boolean getEstado() {
-        return estado;
+        return estado.get();
     }
-    
-    public void setid(String id) throws Exception {
-        if (id == null) { throw new Exception("EL id No puede ser nulo"); }
-        else{
-        this.id = id;
-        }
-    }public void setnombre(String nombre) throws Exception {
-        if (nombre == null) { throw new Exception("EL nombre No puede ser nulo"); }
-        else{
-        this.nombre = nombre;
-        }
-    }public void setapellidos(String apellidos) throws Exception {
-        if (apellidos == null) { throw new Exception("EL apellidos No puede ser nulo"); }
-        else{
-        this.apellidos = apellidos;
-        }
-    }public void setcorreo(String correo) throws Exception {
-        if (correo == null) { throw new Exception("EL correo No puede ser nulo"); }
-        else{
-        this.correo = correo;
-        }
-    }public void setSexo(String sexo) throws Exception {
-        if (sexo == null) { throw new Exception("EL Sexo No puede ser nulo"); }
-        else{
-        this.sexo =sexo;
-        }
-    }public void settipo(String tipo) throws Exception {
-        if (tipo == null) { throw new Exception("EL tipo No puede ser nulo"); }
-        else{
-        this.tipo = tipo;
+
+    public void setEstado(Boolean estado) throws Exception {
+        this.estado.set(estado);
+    }
+
+    public String getPassword() {
+        return password.get();
+    }
+
+    public void setPassword(String password) throws Exception {
+        if (password == null) {
+            throw new Exception("PASSWORD No puede Ser nulo");
+        } else {
+            this.password.set(password);
         }
     }
     
     public void activar(){
-        estado = true;
+        estado.set(true);
     }
     
     public void desactivar(){
-        estado = false;
+        estado.set(false);
     }
 
     @Override

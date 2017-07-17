@@ -8,44 +8,57 @@ package sistema_salud.modelo;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author andre
  */
-public class Columna implements Serializable{
-    
-    private String codigo;
-    private String nombre;
-    private LinkedList<Item> items;
+public class Columna implements Serializable {
+
+    private StringProperty codigo;
+    private StringProperty nombre;
+    private ObservableList<Item> items;
 
     public Columna(String codigo, String nombre) throws Exception {
-        if (codigo == null) { throw new Exception("EL codigo No puede Ser nulo"); }
-        if (nombre == null) { throw new Exception("EL nombre No puede Ser nulo"); }   
-        this.codigo = codigo;
-        this.nombre = nombre;
-        items = new LinkedList<>();
+        if (codigo == null) {
+            throw new Exception("EL codigo No puede Ser nulo");
+        }
+        if (nombre == null) {
+            throw new Exception("EL nombre No puede Ser nulo");
+        }
+
+        this.codigo = new SimpleStringProperty(codigo);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.items = FXCollections.observableArrayList();
+
     }
 
     public String getCodigo() {
-        return codigo;
+        return codigo.get();
     }
 
     public void setCodigo(String codigo) throws Exception {
-    if (codigo == null) { throw new Exception("EL codigo No puede Ser nulo"); }
-    else{
-        this.codigo = codigo;
-    }
+        if (codigo == null) {
+            throw new Exception("EL codigo No puede Ser nulo");
+        } else {
+            this.codigo.set(codigo);
+        }
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
 
     public void setNombre(String Nombre) throws Exception {
-      if (nombre == null) { throw new Exception("EL nombre No puede Ser nulo"); }   
-      else{
-        this.nombre = Nombre;}
+        if (nombre == null) {
+            throw new Exception("EL nombre No puede Ser nulo");
+        } else {
+            this.nombre.set(Nombre);
+        }
     }
 
     @Override
@@ -79,29 +92,27 @@ public class Columna implements Serializable{
     public String toString() {
         return "codigo: " + codigo + " Nombre: " + nombre + " Items: " + items;
     }
-    
+
     //Metodos para gestionar lista de Items
-    
-     public void adicionarItem(Item itemAdicionar)throws Exception{
-       if (itemAdicionar == null) {
+    public void adicionarItem(Item itemAdicionar) throws Exception {
+        if (itemAdicionar == null) {
             throw new Exception("El Item no puede ser nulo");
         }
         items.add(itemAdicionar);
     }
-    
-    public boolean buscarItem(Item itemABuscar)throws Exception{
+
+    public boolean buscarItem(Item itemABuscar) throws Exception {
         if (itemABuscar == null) {
             throw new Exception("El item no se encuentra");
         }
         return items.contains(itemABuscar);
     }
-    
-    public boolean eliminarArticulo(Item itemAEliminar) throws Exception{
+
+    public boolean eliminarArticulo(Item itemAEliminar) throws Exception {
         if (itemAEliminar == null) {
             throw new Exception("El item a eliminar no se encuentra");
         }
         return items.remove(itemAEliminar);
     }
-    
-       
+
 }

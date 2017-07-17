@@ -8,6 +8,10 @@ package sistema_salud.modelo;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,37 +19,41 @@ import java.util.Objects;
  */
 public class Programa implements Serializable {
     
-    private String id;
-    private String name;
-    private LinkedList<Columna> columnaProg;
+    private StringProperty id;
+    private StringProperty name;
+    private ObservableList<Columna> columnaProg;
 
     public Programa(String id, String name) throws Exception {
         if (id == null) { throw new Exception("EL id No puede Ser nulo"); }
-        if (name == null) { throw new Exception("EL nombre No puede Ser nulo"); }      
-        this.id = id;
-        this.name = name;
-        columnaProg= new LinkedList<>();
+        if (name == null) { throw new Exception("EL nombre No puede Ser nulo"); }
+        
+        this.id = new SimpleStringProperty(id);
+        this.name = new SimpleStringProperty(name);
+        
+        columnaProg= FXCollections.observableArrayList();
     }
 
     public String getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(String id) throws Exception {
-        if (id == null) { throw new Exception("EL id No puede Ser nulo"); }
-        else{
-        this.id = id;
+        if (id == null) {
+            throw new Exception("ID No puede Ser nulo");
+        } else {
+            this.id.set(id);
         }
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) throws Exception {
-        if (name == null) { throw new Exception("EL nombre No puede Ser nulo"); 
-        }else{
-        this.name = name;
+        if (name == null) {
+            throw new Exception("NAME No puede Ser nulo");
+        } else {
+            this.name.set(name);
         }
     }
 

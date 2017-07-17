@@ -5,21 +5,29 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.Objects;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Paciente implements Serializable {
     
-    private int id;
-    private String nombre1;
-    private String nombre2;    
-    private String apellido1;
-    private String apellido2;
-    private String Tipodocumento;
-    private String documento;
-    private Calendar FechaNacimiento;
-    private String sexo;
-    private LinkedList<Programa> programasAccedidos;
-    private Eps EpsUser;
-    private Boolean estado;
+    private IntegerProperty id;
+    private StringProperty nombre1;
+    private StringProperty nombre2;    
+    private StringProperty apellido1;
+    private StringProperty apellido2;
+    private StringProperty tipoDocumento;
+    private StringProperty documento;
+    private Calendar fechaNacimiento;
+    private StringProperty sexo;
+    private ObservableList<Programa> programasAccedidos;
+    private Eps epsUser;
+    private BooleanProperty estado;
 
     public Paciente(int id, String nombre1, String apellido1, String apellido2,String TipoDocumento ,String Documento, Calendar FechaNacimiento, String sexo, Eps EpsUser) throws Exception {
         if (id < 0) { throw new Exception("id No puede ser menor que cero"); }
@@ -32,160 +40,163 @@ public class Paciente implements Serializable {
         if (EpsUser == null) { throw new Exception("EpsUSer No puede Ser nulo"); } 
         if (TipoDocumento == null){ throw new Exception("El tipo de documento no puede ser nulo");}
         
-        this.id = id;
-        this.nombre1 = nombre1;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
-        this.documento = Documento;
-        this.FechaNacimiento = FechaNacimiento;
-        this.sexo = sexo;
-        this.EpsUser = EpsUser;
-        this.Tipodocumento = TipoDocumento;
-        programasAccedidos = new LinkedList<>();
-        this.estado = true;
+        this.id = new SimpleIntegerProperty(id);
+        this.nombre1 = new SimpleStringProperty(nombre1);
+        this.apellido1 = new SimpleStringProperty(apellido1);
+        this.apellido2 = new SimpleStringProperty(apellido2);
+        this.documento = new SimpleStringProperty(Documento);
+        this.sexo = new SimpleStringProperty(sexo);
+        this.tipoDocumento = new SimpleStringProperty(TipoDocumento);
+        this.estado = new SimpleBooleanProperty(true);
+        this.epsUser = EpsUser;
+        this.fechaNacimiento = FechaNacimiento;
+        programasAccedidos = FXCollections.observableArrayList();
+       
     }
 
     public int getId() {
-        return id;
+        return id.get();
+    }
+
+    public void setId(int id) throws Exception {
+        if (id < 0) {
+            throw new Exception("ID No puede ser menor que cero");
+        } else {
+            this.id.set(id);
+        }
     }
 
     public String getNombre1() {
-        return nombre1;
+        return nombre1.get();
     }
 
-    public String getNombre2() {
-        return nombre2;
+    public void setNombre1(String nombre1) throws Exception {
+        if (nombre1 == null) {
+            throw new Exception("NOMBRE1 No puede Ser nulo");
+        } else {
+            this.nombre1.set(nombre1);
+        }
     }
 
     public String getApellido1() {
-        return apellido1;
+        return apellido1.get();
+    }
+
+    public void setApellido1(String apellido1) throws Exception {
+        if (apellido1 == null) {
+            throw new Exception("APELLIDO1 No puede Ser nulo");
+        } else {
+            this.apellido1.set(apellido1);
+        }
     }
 
     public String getApellido2() {
-        return apellido2;
+        return apellido2.get();
+    }
+
+    public void setApellido2(String apellido2) throws Exception {
+        if (apellido2 == null) {
+            throw new Exception("APELLIDO2 No puede Ser nulo");
+        } else {
+            this.apellido2.set(apellido2);
+        }
     }
 
     public String getDocumento() {
-        return documento;
+        return documento.get();
     }
 
-    public Calendar getFechaNacimiento() {
-        return FechaNacimiento;
+    public void setDocumento(String documento) throws Exception {
+        if (documento == null) {
+            throw new Exception("DOCUMENTO No puede Ser nulo");
+        } else {
+            this.documento.set(documento);
+        }
     }
 
     public String getSexo() {
-        return sexo;
+        return sexo.get();
+    }
+
+    public void setSexo(String sexo) throws Exception {
+        if (sexo == null) {
+            throw new Exception("SEXO No puede Ser nulo");
+        } else {
+            this.sexo.set(sexo);
+        }
+    }
+    
+    public String getTipoDocumento() {
+        return tipoDocumento.get();
+    }
+
+    public void setTipoDocumento(String tipoDocumento) throws Exception {
+        if (tipoDocumento == null) {
+            throw new Exception("TIPODOCUMENTO No puede Ser nulo");
+        } else {
+            this.tipoDocumento.set(tipoDocumento);
+        }
+    }
+
+    public boolean getEstado() {
+        return estado.get();
+    }
+
+    public void setEstado(boolean estado) throws Exception {
+            this.estado.set(estado);
+        
+    }
+    
+
+    public Calendar getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     public Eps getEpsUser() {
-        return EpsUser;
-    }
-
-    public String getTipodocumento() {
-        return Tipodocumento;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-    
-    
-    public void setid(int id) throws Exception {
-        if (id < 0) { throw new Exception("EL id No puede ser menor que cero"); }
-        else{
-        this.id = id;
-        }
-    }
-    
-    public void setnombre1(String nombre1) throws Exception {
-        if (nombre1 == null) { throw new Exception("EL nombre uno No puede ser nulo"); }
-        else{
-        this.nombre1 = nombre1;
-        }
-    }
-    
-    public void setnombre2(String nombre2) throws Exception {
-        if (nombre2 == null) { throw new Exception("EL segundo nombre No puede ser nulo"); }
-        else{
-        this.nombre2 = nombre2;
-        }
-    }
-    
-    public void setapellido1(String apellido1) throws Exception {
-        if (apellido1 == null) { throw new Exception("EL primer apellido No puede ser nulo"); }
-        else{
-        this.apellido1 = apellido1;
-        }
-    }
-    
-    public void setapellido2(String apellido2) throws Exception {
-        if (apellido2 == null) { throw new Exception("EL segundo apellido No puede ser nulo"); }
-        else{
-        this.apellido2 = apellido2;
-        }
-    }
-    
-    public void setdocumento(String documento) throws Exception {
-        if (documento == null) { throw new Exception("EL documento No puede ser nulo"); }
-        else{
-        this.documento = documento;
-        }
+        return epsUser;
     }
     
     public void setFechaNaciemiento(Calendar FechaNacimiento) throws Exception {
         if (FechaNacimiento.after(Calendar.getInstance())) { 
             throw new Exception("La Fecha de Naciemiento No puede ser despues de la actual"); }
         else{
-        this.FechaNacimiento = FechaNacimiento;
-        }
-    }
-    
-    public void setSexo(String sexo) throws Exception {
-        if (sexo == null) { throw new Exception("EL Sexo No puede ser nulo"); }
-        else{
-        this.sexo = sexo;
+        this.fechaNacimiento = FechaNacimiento;
         }
     }
     
     public void setEpsUSer(Eps EpsUser) throws Exception {
         if (EpsUser == null) { throw new Exception("La Eps No puede ser nulo"); }
         else{
-        this.EpsUser = EpsUser;
+        this.epsUser = EpsUser;
         }
-    }
-
-    public void setTipodocumento(String Tipodocumento) throws Exception {
-      if (Tipodocumento == null){ throw new Exception("El tipo de documento no puede ser nulo");}
-      else{
-         this.Tipodocumento = Tipodocumento; 
-      }
-        
     }
     
     public void activar(){
-        estado = true;
+        estado.set(true);
     }
     
     public void desactivar(){
-        estado = false;
+        estado.set(false);
     }
-    
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.nombre1);
-        hash = 89 * hash + Objects.hashCode(this.nombre2);
-        hash = 89 * hash + Objects.hashCode(this.apellido1);
-        hash = 89 * hash + Objects.hashCode(this.apellido2);
-        hash = 89 * hash + Objects.hashCode(this.documento);
-        hash = 89 * hash + Objects.hashCode(this.FechaNacimiento);
-        hash = 89 * hash + Objects.hashCode(this.sexo);
-        hash = 89 * hash + Objects.hashCode(this.programasAccedidos);
-        hash = 89 * hash + Objects.hashCode(this.EpsUser);
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.nombre1);
+        hash = 37 * hash + Objects.hashCode(this.nombre2);
+        hash = 37 * hash + Objects.hashCode(this.apellido1);
+        hash = 37 * hash + Objects.hashCode(this.apellido2);
+        hash = 37 * hash + Objects.hashCode(this.tipoDocumento);
+        hash = 37 * hash + Objects.hashCode(this.documento);
+        hash = 37 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 37 * hash + Objects.hashCode(this.sexo);
+        hash = 37 * hash + Objects.hashCode(this.programasAccedidos);
+        hash = 37 * hash + Objects.hashCode(this.epsUser);
+        hash = 37 * hash + Objects.hashCode(this.estado);
         return hash;
     }
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -208,8 +219,8 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "id: " + id + " nombre: " + nombre1 + " " + nombre2 + " " + apellido1 +
-                " " + apellido2 + " doc: " + documento + " FechaNacimiento: " + FechaNacimiento + " " +
-                sexo + " programas Accedidos: " + programasAccedidos + " Eps: " + EpsUser +" Estado: "+estado;
+                " " + apellido2 + " doc: " + documento + " FechaNacimiento: " + fechaNacimiento + " " +
+                sexo + " programas Accedidos: " + programasAccedidos + " Eps: " + epsUser +" Estado: "+estado;
     }
 
     //Gestionar Pogramas Accedidos

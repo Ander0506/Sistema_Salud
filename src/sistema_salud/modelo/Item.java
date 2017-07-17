@@ -7,45 +7,50 @@ package sistema_salud.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author andre
  */
 public class Item implements Serializable {
-    
-    private String nombre;
-    private Boolean estado;
+
+    private StringProperty nombre;
+    private BooleanProperty estado;
 
     public Item(String nombre) throws Exception {
-        if (nombre == null) { throw new Exception("EL nombre no puede Ser nulo"); } 
-        this.nombre = nombre;
-        this.estado = false;
+        if (nombre == null) {
+            throw new Exception("EL nombre no puede Ser nulo");
+        }
+
+        this.nombre = new SimpleStringProperty(nombre);
+        this.estado = new SimpleBooleanProperty(false);
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
 
     public void setNombre(String nombre) throws Exception {
-    if (nombre == null) { throw new Exception("EL nombre no puede Ser nulo"); } 
-    else{
-        this.nombre = nombre;
-    }
-    }
-
-    public Boolean getEstado() {
-        return estado;
+        if (nombre == null) {
+            throw new Exception("NOMBRE No puede Ser nulo");
+        } else {
+            this.nombre.set(nombre);
+        }
     }
 
-    public void activar(){
-        estado = true;
+    public boolean getEstado() {
+        return estado.get();
     }
-    
-    public void desactivar(){
-        estado = false;
+
+    public void setEstado(boolean estado) throws Exception {
+            this.estado.set(estado);
+        
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -79,8 +84,5 @@ public class Item implements Serializable {
     public String toString() {
         return "nombre:" + nombre + " estado:" + estado;
     }
-    
 
-    
-    
 }
