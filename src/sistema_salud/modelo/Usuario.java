@@ -17,20 +17,26 @@ import javafx.beans.property.StringProperty;
  */
 public class Usuario {
     
-    public StringProperty nombre;
-    public StringProperty user;
-    public StringProperty apellidos;
-    public StringProperty id;
-    public StringProperty correo;
-    public StringProperty tipo;
-    public StringProperty sexo;
-    public BooleanProperty estado;
-    public StringProperty password;
+    public final StringProperty nombre;
+    public final StringProperty user;
+    public final StringProperty apellidos;
+    public final StringProperty id;
+    public final StringProperty correo;
+    public final StringProperty tipo;
+    public final StringProperty sexo;
+    public final BooleanProperty estado;
+    public final StringProperty password;
 
-    public Usuario(String user, String password) throws Exception {
+    public Usuario(String id, String nombre, String apellidos, String correo, String tipo, String sexo,  String user, String password) throws Exception {
         if(user == null){ throw new Exception("El usuario no puede ser nulo"); }
         if(password == null){ throw new Exception("la contraseña no puede ser nula");}
  
+        this.id = new SimpleStringProperty(id);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.apellidos = new SimpleStringProperty(apellidos);
+        this.correo = new SimpleStringProperty(correo);
+        this.tipo = new SimpleStringProperty(tipo);
+        this.sexo = new SimpleStringProperty(sexo);
         this.user = new SimpleStringProperty(user);
         this.password = new SimpleStringProperty(password);
         this.estado = new SimpleBooleanProperty(true);    

@@ -45,10 +45,7 @@ public class LoginController implements Initializable {
 
     void crearUsuario() {
         try {
-            Usuario user = new Usuario("Andres", "12345");
-            user.setid("12345");
-            user.setnombre("Andres");
-            user.setapellidos("Padilla");
+            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "M", "Anderson", "123");
             sistema.adicionarUsuario(user);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

@@ -8,6 +8,8 @@ package sistema_salud.modelo;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,14 +23,16 @@ public class Sistema implements Serializable{
     private LinkedList<Columna> columnas;
     private LinkedList<Eps> epss;
     private LinkedList<Paciente> pacientes;
-    private LinkedList<Usuario> usuarios;
+//    private LinkedList<Usuario> usuarios;
+    ObservableList<Usuario> usuarios;
    
     public Sistema() {
         programas = new LinkedList<>();
         columnas = new LinkedList<>();
         epss = new LinkedList<>();
         pacientes = new LinkedList<>(); 
-        usuarios = new LinkedList<>();
+//        usuarios = new LinkedList<>();
+        usuarios = FXCollections.observableArrayList();
     }
 
     public LinkedList<Programa> getProgramas() {
@@ -43,7 +47,11 @@ public class Sistema implements Serializable{
     public LinkedList<Paciente> getPacientes() {
         return pacientes;
     }
-    public LinkedList<Usuario> getUsuarios() {
+//    public LinkedList<Usuario> getUsuarios() {
+//        return usuarios;
+//    }
+
+    public ObservableList<Usuario> getUsuarios() {
         return usuarios;
     }
     
@@ -220,7 +228,7 @@ public class Sistema implements Serializable{
     public Usuario RetornarUsuarioPorUser(String user){
          Iterator<Usuario> it = usuarios.iterator(); 
          boolean encontrado = false;
-         Usuario actual = usuarios.getFirst();
+         Usuario actual = usuarios.get(0);
          while(it.hasNext()&& encontrado == false){
                actual = it.next();
           if (actual.getUser().equals(user)) {
