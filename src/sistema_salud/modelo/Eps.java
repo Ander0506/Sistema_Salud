@@ -16,8 +16,8 @@ import javafx.beans.property.StringProperty;
  */
 public class Eps implements Serializable {
 
-    private StringProperty name;
-    private StringProperty code;
+    private final StringProperty name;
+    private final StringProperty code;
 
     public Eps(String name, String code) throws Exception {
         if (name == null) {

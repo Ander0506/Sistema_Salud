@@ -19,38 +19,37 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Sistema implements Serializable{
     
-    private LinkedList<Programa> programas;
-    private LinkedList<Columna> columnas;
-    private LinkedList<Eps> epss;
-    private LinkedList<Paciente> pacientes;
+    private ObservableList<Programa> programas;
+    private ObservableList<Columna> columnas;
+    private ObservableList<Eps> epss;
+    private ObservableList<Paciente> pacientes;
 //    private LinkedList<Usuario> usuarios;
-    ObservableList<Usuario> usuarios;
+    private ObservableList<Usuario> usuarios;
    
     public Sistema() {
-        programas = new LinkedList<>();
-        columnas = new LinkedList<>();
-        epss = new LinkedList<>();
-        pacientes = new LinkedList<>(); 
+        programas = FXCollections.observableArrayList();
+        columnas = FXCollections.observableArrayList();
+        epss = FXCollections.observableArrayList();
+        pacientes = FXCollections.observableArrayList(); 
 //        usuarios = new LinkedList<>();
         usuarios = FXCollections.observableArrayList();
     }
 
-    public LinkedList<Programa> getProgramas() {
+    public ObservableList<Programa> getProgramas() {
         return programas;
     }
-    public LinkedList<Columna> getColumnas() {
+    public ObservableList<Columna> getColumnas() {
         return columnas;
     }
-    public LinkedList<Eps> getEpss() {
+    public ObservableList<Eps> getEpss() {
         return epss;
     }
-    public LinkedList<Paciente> getPacientes() {
+    public ObservableList<Paciente> getPacientes() {
         return pacientes;
     }
 //    public LinkedList<Usuario> getUsuarios() {
 //        return usuarios;
 //    }
-
     public ObservableList<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -76,7 +75,7 @@ public class Sistema implements Serializable{
     public Programa RetornarProgramaPorCodigo(String Id){
          Iterator<Programa> it = programas.iterator(); 
          boolean encontrado = false;
-         Programa actual = programas.getFirst();
+         Programa actual = programas.get(0);
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getId().equals(Id)) {
@@ -107,7 +106,7 @@ public class Sistema implements Serializable{
     public Columna RetornarColumnaPorCodigo(String Id){
          Iterator<Columna> it = columnas.iterator(); 
          boolean encontrado = false;
-         Columna actual = columnas.getFirst();
+         Columna actual = columnas.get(0);
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getCodigo().equals(Id)) {
@@ -138,7 +137,7 @@ public class Sistema implements Serializable{
     public Eps RetornarEpsPorCodigo(String Id){
          Iterator<Eps> it = epss.iterator(); 
          boolean encontrado = false;
-         Eps actual = epss.getFirst();
+         Eps actual = epss.get(0);
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getCode().equals(Id)) {
@@ -150,7 +149,7 @@ public class Sistema implements Serializable{
     public Eps RetornarEpsPorNombre(String nombre){
          Iterator<Eps> it = epss.iterator(); 
          boolean encontrado = false;
-         Eps actual = epss.getFirst();
+         Eps actual = epss.get(0);
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getName().equals(nombre)) {
@@ -206,7 +205,7 @@ public class Sistema implements Serializable{
     public Paciente RetornarPacientePorCC(String doc){
          Iterator<Paciente> it = pacientes.iterator(); 
          boolean encontrado = false;
-         Paciente actual = pacientes.getFirst();
+         Paciente actual = pacientes.get(0);
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getDocumento().equals(doc)) {
