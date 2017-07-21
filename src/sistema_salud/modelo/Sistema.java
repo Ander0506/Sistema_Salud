@@ -47,6 +47,7 @@ public class Sistema implements Serializable{
     public LinkedList<Paciente> getPacientes() {
         return pacientes;
     }
+    
 //    public LinkedList<Usuario> getUsuarios() {
 //        return usuarios;
 //    }
@@ -236,6 +237,19 @@ public class Sistema implements Serializable{
           }
          }
       return actual;
+    }
+    
+    public ObservableList<Usuario> retornarListaDeUsuario(String user){
+        ObservableList resultado = FXCollections.observableArrayList();
+         Iterator<Usuario> it = usuarios.iterator(); 
+         Usuario actual = usuarios.get(0);
+         while(it.hasNext()){
+               actual = it.next();
+          if (actual.getUser().equalsIgnoreCase(user)) {
+             resultado.add(actual);
+          }
+         }
+      return resultado;
     }
 
 

@@ -5,13 +5,10 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +18,7 @@ import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 
 
-public class PrincipalController implements Initializable {
+public class PrincipalController {
     
     @FXML private Label nombreUsuario;
     @FXML private JFXHamburger menu;
@@ -30,14 +27,15 @@ public class PrincipalController implements Initializable {
 
 
 
-private Sistema nuevoSistema;
+private Sistema sistema = new Sistema();
 private Usuario nuevoUsuario;
 
 
 
     public void setNuevoSistema(Sistema nuevoSistema) {
-        this.nuevoSistema = nuevoSistema;
+        this.sistema = nuevoSistema;
     }
+
 
     public void setNuevoUsuario(Usuario nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
@@ -53,6 +51,7 @@ private Usuario nuevoUsuario;
             resultado = (VBox)cargar.load();
             DrawerContentController principalC = cargar.getController();
             principalC.setNuevoUsuario(nuevoUsuario);
+            principalC.setSistema(sistema);
             principalC.setPrincipal(this);
         } catch (IOException ex) {
             Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,8 +65,7 @@ private Usuario nuevoUsuario;
          contenido.setSidePane(contenidoBoton);
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML public void initialize() {
         HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(menu);
         transition.setRate(-1);
         menu.addEventHandler(MouseEvent.MOUSE_PRESSED,(e) -> {
@@ -75,9 +73,11 @@ private Usuario nuevoUsuario;
             transition.play();
             if (menuDesplegable.isShown()) {
                 menuDesplegable.close();
+                menuDesplegable.setMouseTransparent(true);
             }else{
                 menuDesplegable.open();
-                menuDesplegable.setSidePane(inicioMenu(this.nuevoUsuario));
+                menuDesplegable.setMouseTransparent(false);
+                menuDesplegable.setSidePane(inicioMenu(nuevoUsuario));
             }
         });
     }    

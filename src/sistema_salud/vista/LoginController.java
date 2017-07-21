@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.vista;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
@@ -26,34 +19,19 @@ import sistema_salud.modelo.Sistema;
 import sistema_salud.controlador.Sistema_Salud;
 import sistema_salud.modelo.Usuario;
 
-/**
- * FXML Controller class
- *
- * @author andre
- */
-public class LoginController implements Initializable {
 
-    @FXML
-    private JFXTextField userTxt;
-    @FXML
-    private JFXButton IniciarBt;
-    @FXML
-    private JFXPasswordField passwordTxt;
+public class LoginController {
+
+    @FXML private JFXTextField userTxt;
+    @FXML private JFXButton IniciarBt;
+    @FXML private JFXPasswordField passwordTxt;
     private Sistema sistema = new Sistema();
 
- 
-
-    void crearUsuario() {
-        try {
-            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "M", "Anderson", "123");
-            sistema.adicionarUsuario(user);
-        } catch (Exception ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
     }
     
+
     void inicioPrincipal(Usuario nuevoUsuario){
         try {
             FXMLLoader cargar = new FXMLLoader();
@@ -66,14 +44,14 @@ public class LoginController implements Initializable {
             contenedor.setScene(escena);
             PrincipalController principalC = cargar.getController();
             principalC.setNuevoUsuario(nuevoUsuario);
+            principalC.setNuevoSistema(sistema);
             contenedor.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
-    private void IniciarSesion(ActionEvent event) {
+    @FXML void IniciarSesion(ActionEvent event) {
         if (userTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Informacion");
@@ -93,7 +71,7 @@ public class LoginController implements Initializable {
                     Usuario user = sistema.RetornarUsuarioPorUser(userTxt.getText());
                     if (user != null && user.getPassword().equals(passwordTxt.getText())) {
                              Stage ventana = (Stage)IniciarBt.getScene().getWindow();
-                            ventana.close();
+                             ventana.close();
                              inicioPrincipal(user);
 
                     } else {
@@ -113,9 +91,9 @@ public class LoginController implements Initializable {
 
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        crearUsuario();
+    @FXML
+    public void initialize() {
+
     }
 
 }

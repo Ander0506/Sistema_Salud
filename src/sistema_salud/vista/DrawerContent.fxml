@@ -12,17 +12,17 @@
    <children>
       <AnchorPane prefHeight="139.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="226.0" fitWidth="300.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="212.0" fitWidth="300.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Imagenes/Fondo%20Usuario-01.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="95.0" fitWidth="101.0" layoutX="103.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="101.0" layoutX="103.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Imagenes/user.png" />
                </image>
             </ImageView>
-            <Label fx:id="nombreUsuario" alignment="CENTER" layoutX="79.0" layoutY="174.0" prefHeight="20.0" prefWidth="142.0" text="Nombre de Usuario" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="nombreUsuario" alignment="CENTER" layoutX="79.0" layoutY="161.0" prefHeight="20.0" prefWidth="142.0" text="Nombre de Usuario" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>

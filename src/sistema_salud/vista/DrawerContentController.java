@@ -15,14 +15,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Usuario;
 import sistema_salud.controlador.Sistema_Salud;
+import sistema_salud.modelo.Sistema;
 
-
-public class DrawerContentController implements Initializable {
+public class DrawerContentController {
 
     @FXML private Label nombreUsuario;
     @FXML private JFXButton btSalir;
     
     private Usuario nuevoUsuario;
+    private Sistema sistema = new Sistema();
     private AnchorPane resultado = new AnchorPane();
     private PrincipalController Principal;
 
@@ -30,6 +31,12 @@ public class DrawerContentController implements Initializable {
     public void setPrincipal(PrincipalController Principal) {
         this.Principal = Principal;
     }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+    
+    
     
     public AnchorPane getResultado() {
         return resultado;
@@ -60,6 +67,7 @@ public class DrawerContentController implements Initializable {
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoUsuarios.fxml"));
             resultado = (AnchorPane)cargar.load();
             ContenidoUsuariosController usuarioC = cargar.getController();
+            usuarioC.setSistema(sistema);
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,8 +85,7 @@ public class DrawerContentController implements Initializable {
         iniciarLogin();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 }

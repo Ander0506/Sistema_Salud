@@ -26,12 +26,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXTextField fx:id="userTxt" alignment="CENTER" focusColor="WHITE" labelFloat="true" prefHeight="25.0" prefWidth="189.0" promptText="Usuario" styleClass="textFieldLogin" stylesheets="@../../css/style.css" unFocusColor="#00fff6" GridPane.columnIndex="1">
+            <JFXTextField fx:id="userTxt" alignment="CENTER" focusColor="WHITE" labelFloat="true" onAction="#IniciarSesion" prefHeight="25.0" prefWidth="189.0" promptText="Usuario" styleClass="textFieldLogin" stylesheets="@../../css/style.css" unFocusColor="#00fff6" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="passwordTxt" alignment="CENTER" focusColor="WHITE" labelFloat="true" promptText="Password" styleClass="textFieldLogin" stylesheets="@../../css/style.css" unFocusColor="#00fff6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXPasswordField fx:id="passwordTxt" alignment="CENTER" focusColor="WHITE" labelFloat="true" onAction="#IniciarSesion" promptText="Password" styleClass="textFieldLogin" stylesheets="@../../css/style.css" unFocusColor="#00fff6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <JFXButton fx:id="IniciarBt" alignment="CENTER" onAction="#IniciarSesion" prefHeight="70.0" prefWidth="245.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Iniciar Sesion" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
@@ -40,7 +40,7 @@
                   <DropShadow />
                </effect>
             </JFXButton>
-            <SVGPath content="M55.6,40.2c0,4.8-3.6,8.8-8,8.8H27.6c-4.4,0-8-3.9-8-8.8c0-10.7,4.6-13.9,7.9-14.9c-1.2-1.9-1.9-4-1.9-6.4c0-6.6,5.4-12,12-12s12,5.4,12,12c0,2.3-0.7,4.5-1.9,6.4C51.1,26.2,55.6,29.5,55.6,40.2z M52.6,40.2c0-7.4-2.5-12-7.1-12.3c-2.1,1.9-4.9,3-7.9,3s-5.8-1.1-7.9-3c-4.6,0.2-7.1,4.9-7.1,12.3c0,3.2,2.3,5.8,5,5.8h20.1C50.4,45.9,52.6,43.4,52.6,40.2z M28.6,18.9c0,5,4,9,9,9s9-4,9-9c0-5-4-9-9-9S28.6,13.9,28.6,18.9z" fill="#e4e4e4" fillRule="EVEN_ODD" styleClass="usuario">
+            <SVGPath content="M55.6,40.2c0,4.8-3.6,8.8-8,8.8H27.6c-4.4,0-8-3.9-8-8.8c0-10.7,4.6-13.9,7.9-14.9c-1.2-1.9-1.9-4-1.9-6.4c0-6.6,5.4-12,12-12s12,5.4,12,12c0,2.3-0.7,4.5-1.9,6.4C51.1,26.2,55.6,29.5,55.6,40.2z M52.6,40.2c0-7.4-2.5-12-7.1-12.3c-2.1,1.9-4.9,3-7.9,3s-5.8-1.1-7.9-3c-4.6,0.2-7.1,4.9-7.1,12.3c0,3.2,2.3,5.8,5,5.8h20.1C50.4,45.9,52.6,43.4,52.6,40.2z M28.6,18.9c0,5,4,9,9,9s9-4,9-9c0-5-4-9-9-9S28.6,13.9,28.6,18.9z" fill="#e4e4e4" fillRule="EVEN_ODD">
                <effect>
                   <Reflection fraction="0.66" topOpacity="0.19" />
                </effect>
