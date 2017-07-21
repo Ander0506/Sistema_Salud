@@ -47,10 +47,6 @@ public class Sistema implements Serializable{
     public ObservableList<Paciente> getPacientes() {
         return pacientes;
     }
-    
-//    public LinkedList<Usuario> getUsuarios() {
-//        return usuarios;
-//    }
     public ObservableList<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -241,16 +237,32 @@ public class Sistema implements Serializable{
     public ObservableList<Usuario> retornarListaDeUsuario(String user){
         ObservableList resultado = FXCollections.observableArrayList();
          Iterator<Usuario> it = usuarios.iterator(); 
-         Usuario actual = usuarios.get(0);
+         Usuario actual = usuarios.get(0); 
+         user = user.toLowerCase();
          while(it.hasNext()){
                actual = it.next();
-          if (actual.getUser().equalsIgnoreCase(user)) {
-             resultado.add(actual);
-          }
+         
+               //Busco por nombre
+               if(actual.getNombre().toLowerCase().indexOf(user) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+               //Busco por apellido y pregunto si esta en la lista ya
+               if(actual.getApellidos().toLowerCase().indexOf(user) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               //Busco por id y pregunto si esta en la lista ya
+               if(actual.getId().toLowerCase().indexOf(user) >= 0 &&  !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
          }
       return resultado;
     }
-
+    
+    
+    
+    
 
 
 //Metodos Auxiliares
