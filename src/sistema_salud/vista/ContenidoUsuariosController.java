@@ -82,13 +82,13 @@ public class ContenidoUsuariosController {
     
     @FXML void nuevoUsuario(){
         try {
-            Stage contenedor = new Stage();
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/NuevoUsuario.fxml"));
             AnchorPane login = (AnchorPane) cargar.load();
+            Stage contenedor = new Stage();
+            contenedor.initStyle(StageStyle.UNDECORATED);
             Scene escena = new Scene(login);
             contenedor.setScene(escena);
-            contenedor.initStyle(StageStyle.UNDECORATED);
             contenedor.show();
         } catch (IOException ex) {
             Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);

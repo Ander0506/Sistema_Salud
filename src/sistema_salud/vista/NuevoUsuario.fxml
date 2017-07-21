@@ -62,7 +62,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="IniciarBt" alignment="CENTER" onAction="#IniciarSesion" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Ok" textFill="WHITE">
+                  <JFXButton alignment="CENTER" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Ok" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -70,7 +70,7 @@
                         <DropShadow />
                      </effect>
                   </JFXButton>
-                  <JFXButton fx:id="IniciarBt1" alignment="CENTER" onAction="#IniciarSesion" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1">
+                  <JFXButton alignment="CENTER" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Cancelar" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
