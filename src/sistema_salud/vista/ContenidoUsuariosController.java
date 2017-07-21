@@ -89,6 +89,8 @@ public class ContenidoUsuariosController {
             contenedor.initStyle(StageStyle.UNDECORATED);
             Scene escena = new Scene(login);
             contenedor.setScene(escena);
+            NuevoUsuarioController NewUser = cargar.getController();
+            NewUser.setSistema(sistema);
             contenedor.show();
         } catch (IOException ex) {
             Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
