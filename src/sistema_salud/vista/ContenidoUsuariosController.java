@@ -1,12 +1,21 @@
 
 package sistema_salud.vista;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import sistema_salud.controlador.Sistema_Salud;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 
@@ -68,6 +77,21 @@ public class ContenidoUsuariosController {
             tablaUsuarios.setItems(sistema.getUsuarios());
         }else{
             tablaUsuarios.setItems(sistema.retornarListaDeUsuario(txtBuscar.getText()));
+        }
+    }
+    
+    @FXML void nuevoUsuario(){
+        try {
+            Stage contenedor = new Stage();
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/NuevoUsuario.fxml"));
+            AnchorPane login = (AnchorPane) cargar.load();
+            Scene escena = new Scene(login);
+            contenedor.setScene(escena);
+            contenedor.initStyle(StageStyle.UNDECORATED);
+            contenedor.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
