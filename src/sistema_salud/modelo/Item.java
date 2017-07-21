@@ -18,8 +18,8 @@ import javafx.beans.property.StringProperty;
  */
 public class Item implements Serializable {
 
-    private StringProperty nombre;
-    private BooleanProperty estado;
+    private final StringProperty nombre;
+    private final BooleanProperty estado;
 
     public Item(String nombre) throws Exception {
         if (nombre == null) {

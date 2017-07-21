@@ -16,20 +16,20 @@ import javafx.collections.ObservableList;
 
 public class Paciente implements Serializable {
     
-    private IntegerProperty id;
-    private StringProperty nombre1;
-    private StringProperty nombre2;    
-    private StringProperty apellido1;
-    private StringProperty apellido2;
-    private StringProperty tipoDocumento;
-    private StringProperty documento;
-    private Calendar fechaNacimiento;
-    private StringProperty sexo;
-    private ObservableList<Programa> programasAccedidos;
+    private final IntegerProperty id;
+    private final StringProperty nombre1;
+    private final StringProperty nombre2;    
+    private final StringProperty apellido1;
+    private final StringProperty apellido2;
+    private final StringProperty tipoDocumento;
+    private final StringProperty documento;
+    private Calendar fechaNacimiento; //Problema
+    private final StringProperty sexo;
+    private final ObservableList<Programa> programasAccedidos;
     private Eps epsUser;
-    private BooleanProperty estado;
+    private final BooleanProperty estado;
 
-    public Paciente(int id, String nombre1, String apellido1, String apellido2,String TipoDocumento ,String Documento, Calendar FechaNacimiento, String sexo, Eps EpsUser) throws Exception {
+    public Paciente(int id, String nombre1, String nombre2,String apellido1, String apellido2,String TipoDocumento ,String Documento, Calendar FechaNacimiento, String sexo, Eps EpsUser) throws Exception {
         if (id < 0) { throw new Exception("id No puede ser menor que cero"); }
         if (nombre1== null) { throw new Exception("nombre1 No puede Ser nulo"); }
         if (apellido1== null) { throw new Exception("apellido1 No puede Ser nulo"); } 
@@ -42,6 +42,7 @@ public class Paciente implements Serializable {
         
         this.id = new SimpleIntegerProperty(id);
         this.nombre1 = new SimpleStringProperty(nombre1);
+        this.nombre2 = new SimpleStringProperty(nombre2);
         this.apellido1 = new SimpleStringProperty(apellido1);
         this.apellido2 = new SimpleStringProperty(apellido2);
         this.documento = new SimpleStringProperty(Documento);

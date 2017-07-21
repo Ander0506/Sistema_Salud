@@ -19,8 +19,8 @@ import javafx.collections.ObservableList;
  */
 public class Columna implements Serializable {
 
-    private StringProperty codigo;
-    private StringProperty nombre;
+    private final StringProperty codigo;
+    private final StringProperty nombre;
     private ObservableList<Item> items;
 
     public Columna(String codigo, String nombre) throws Exception {
