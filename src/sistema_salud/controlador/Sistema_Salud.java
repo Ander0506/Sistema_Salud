@@ -52,6 +52,7 @@ public class Sistema_Salud extends Application {
         try {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/Login.fxml"));
+           // cargar.setLocation(Sistema_Salud.class.getResource("../vista/.fxml"));
             AnchorPane login = (AnchorPane) cargar.load();
             Scene escena = new Scene(login);
             contenedor.setScene(escena);

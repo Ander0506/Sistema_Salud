@@ -5,6 +5,7 @@
  */
 package sistema_salud.vista;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -13,11 +14,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import sistema_salud.controlador.Sistema_Salud;
+import static javafx.scene.input.KeyCode.A;
+import javafx.stage.Stage;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 
@@ -34,22 +33,19 @@ public class NuevoUsuarioController implements Initializable {
         this.sistema = sistema;
     }
     
-    @FXML
-    private JFXTextField txtId;
-    @FXML
-    private JFXTextField txtNombre;
-    @FXML
-    private JFXTextField txtApellido;
-    @FXML
-    private JFXTextField txtCorreo;
-    @FXML
-    private JFXTextField txtUser;
-    @FXML
-    private JFXTextField txtPassword;
-    @FXML
-    private JFXComboBox<String> comboBoxSexo;
-    @FXML
-    private JFXComboBox<String> ComboBoxTipo;
+    @FXML    private JFXTextField txtId;
+    @FXML    private JFXTextField txtNombre;
+    @FXML    private JFXTextField txtApellido;
+    @FXML    private JFXTextField txtCorreo;
+    @FXML    private JFXTextField txtUser;
+    @FXML    private JFXTextField txtPassword;
+    @FXML    private JFXComboBox<String> comboBoxSexo;
+    @FXML    private JFXComboBox<String> ComboBoxTipo;
+    @FXML    private JFXButton BtOk;
+    @FXML    private JFXButton btcancelar;
+    
+    ObservableList<String> items = FXCollections.observableArrayList("Administrador","Usuario");
+    ObservableList<String> itemSex = FXCollections.observableArrayList("Femenino","Masculino");
 
     /**
      * Initializes the controller class.
@@ -57,11 +53,7 @@ public class NuevoUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        ObservableList<String> items = FXCollections.observableArrayList("Administrador","Usuario");
-        ComboBoxTipo.setItems(items);
-        
-        ObservableList<String> itemSex = FXCollections.observableArrayList("Femenino","Masculino");
+        ComboBoxTipo.setItems(items);        
         comboBoxSexo.setItems(itemSex);
     }    
     
@@ -72,12 +64,16 @@ public class NuevoUsuarioController implements Initializable {
                 txtCorreo.getText(),ComboBoxTipo.getValue(), comboBoxSexo.getValue(), txtUser.getText(), txtPassword.getText());
         sistema.adicionarUsuario(nuevoUser);
         
-        //Cargar el sistema en 
-        FXMLLoader cargar = new FXMLLoader();
-        cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoUsuarios.fxml"));
-        ContenidoUsuariosController ControlUserContent = cargar.getController();
-        ControlUserContent.setSistema(sistema);
+       Stage ventana = (Stage)BtOk.getScene().getWindow();
+       ventana.close();
         
     }
+    
+    @FXML
+    void cancelarUsuario(ActionEvent event) {
+      Stage ventana = (Stage)btcancelar.getScene().getWindow();
+       ventana.close();
+    }
+    
     
 }
