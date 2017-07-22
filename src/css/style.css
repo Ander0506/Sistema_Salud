@@ -26,3 +26,8 @@
     -fx-background-color: white;
 }
 
+.nuevoUsuario{
+    -fx-padding: 5;
+    -fx-background-color: #0a5a51;
+}
+

@@ -24,8 +24,7 @@ public class PrincipalController {
     @FXML private JFXHamburger menu;
     @FXML private JFXDrawer menuDesplegable;
     @FXML private JFXDrawer contenido;
-
-
+    
 
 private Sistema sistema = new Sistema();
 private Usuario nuevoUsuario;
@@ -61,8 +60,9 @@ private Usuario nuevoUsuario;
     
     
     public void presBoton(AnchorPane contenidoBoton){
-         contenido.open();
-         contenido.setSidePane(contenidoBoton);
+        contenido.open();
+        contenido.setSidePane(contenidoBoton);
+        contenido.setTranslateX(300);
     }
     
     @FXML public void initialize() {
@@ -74,10 +74,12 @@ private Usuario nuevoUsuario;
             if (menuDesplegable.isShown()) {
                 menuDesplegable.close();
                 menuDesplegable.setMouseTransparent(true);
+                contenido.setTranslateX(0);
             }else{
                 menuDesplegable.open();
                 menuDesplegable.setMouseTransparent(false);
                 menuDesplegable.setSidePane(inicioMenu(nuevoUsuario));
+                contenido.setTranslateX(300);
             }
         });
     }    

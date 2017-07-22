@@ -72,6 +72,23 @@ public class DrawerContentController {
         }
     }
     
+    void contenidoColumnas(){
+        try {
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoColumnas.fxml"));
+            resultado = (AnchorPane)cargar.load();
+            ContenidoColumnasController columnaC = cargar.getController();
+            columnaC.setSistema(sistema);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML void columnas(){
+        contenidoColumnas();
+        Principal.presBoton(getResultado());
+    }
+    
     @FXML void usuarios(){
         contenidoUsuario();
         Principal.presBoton(getResultado());

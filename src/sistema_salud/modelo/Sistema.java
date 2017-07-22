@@ -7,7 +7,6 @@ package sistema_salud.modelo;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.swing.JTable;
@@ -20,26 +19,19 @@ import javax.swing.table.DefaultTableModel;
 public class Sistema implements Serializable{
     
     private ObservableList<Programa> programas;
-    private ObservableList<Columna> columnas;
     private ObservableList<Eps> epss;
     private ObservableList<Paciente> pacientes;
-//    private LinkedList<Usuario> usuarios;
     private ObservableList<Usuario> usuarios;
    
     public Sistema() {
         programas = FXCollections.observableArrayList();
-        columnas = FXCollections.observableArrayList();
         epss = FXCollections.observableArrayList();
         pacientes = FXCollections.observableArrayList(); 
-//        usuarios = new LinkedList<>();
         usuarios = FXCollections.observableArrayList();
     }
 
     public ObservableList<Programa> getProgramas() {
         return programas;
-    }
-    public ObservableList<Columna> getColumnas() {
-        return columnas;
     }
     public ObservableList<Eps> getEpss() {
         return epss;
@@ -76,37 +68,6 @@ public class Sistema implements Serializable{
       while(it.hasNext()&& encontrado == false){
            actual = it.next();
           if (actual.getId().equals(Id)) {
-              encontrado = true;
-          }
-         }
-      return actual;
-    }
-    
-    public void adicionarColumna(Columna columnaAdicionar)throws Exception{
-       if (columnaAdicionar == null) {
-            throw new Exception("La columna no puede ser nulo");
-        }
-        columnas.add(columnaAdicionar);
-    }
-    public boolean buscarColumna(Columna columnaABuscar)throws Exception{
-        if (columnaABuscar == null) {
-            throw new Exception("La columna no se encuentra");
-        }
-        return columnas.contains(columnaABuscar);
-    }
-    public boolean eliminarColumna(Columna columnaAEliminar) throws Exception{
-        if (columnaAEliminar == null) {
-            throw new Exception("La columna a eliminar no se encuentra");
-        }
-        return columnas.remove(columnaAEliminar);
-    }
-    public Columna RetornarColumnaPorCodigo(String Id){
-         Iterator<Columna> it = columnas.iterator(); 
-         boolean encontrado = false;
-         Columna actual = columnas.get(0);
-      while(it.hasNext()&& encontrado == false){
-           actual = it.next();
-          if (actual.getCodigo().equals(Id)) {
               encontrado = true;
           }
          }

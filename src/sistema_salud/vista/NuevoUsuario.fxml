@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.NuevoUsuarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="nuevoUsuario" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.NuevoUsuarioController">
    <children>
-      <Pane layoutX="1.0" layoutY="-2.0" prefHeight="53.0" prefWidth="600.0" style="-fx-background-color: #109689;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="33.0" layoutY="33.0" prefHeight="60.0" prefWidth="545.0" style="-fx-background-color: #109689;" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="205.0" layoutY="5.0" text="Nuevo Usuario" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="194.0" layoutY="5.0" text="Nuevo Usuario" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -27,7 +27,8 @@
             </Label>
          </children>
       </Pane>
-      <GridPane alignment="CENTER" layoutY="51.0" prefHeight="349.0" prefWidth="600.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0">
+      <Pane layoutX="20.0" layoutY="65.0" prefHeight="335.0" prefWidth="580.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
+      <GridPane alignment="CENTER" layoutY="51.0" prefHeight="349.0" prefWidth="600.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="225.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="97.0" />
@@ -83,4 +84,7 @@
          </children>
       </GridPane>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

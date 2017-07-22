@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.controlador;
 
 import java.io.IOException;
@@ -13,14 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sistema_salud.modelo.Item;
+import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 import sistema_salud.vista.LoginController;
 
-/**
- *
- * @author LENOVO
- */
+
 public class Sistema_Salud extends Application {
     
     private Stage contenedor;
@@ -32,6 +27,7 @@ public class Sistema_Salud extends Application {
        this.contenedor = contenedor;
        this.contenedor.setTitle("Login");
        crearUsuario();
+       crearProgramas();
        iniciarLogin();
     }
     
@@ -46,6 +42,42 @@ public class Sistema_Salud extends Application {
 
         }
 
+    }
+    
+    void crearProgramas(){
+        try {
+            Programa programa1 = new Programa("11", "Programa 1");
+            Programa programa2 = new Programa("12", "Programa 2");
+            Programa programa3 = new Programa("13", "Programa 3");
+            Item item1 = new Item("01", "item1");
+            Item item2 = new Item("02", "item2");
+            Item item3 = new Item("03", "item3");
+            Item item4 = new Item("04", "item4");
+            Item item5 = new Item("05", "item5");
+            Item item6 = new Item("06", "item6");
+            Item item7 = new Item("07", "item7");
+            Item item8 = new Item("08", "item8");
+            programa1.adicionarItem(item8);
+            programa1.adicionarItem(item5);
+            programa1.adicionarItem(item2);
+            programa2.adicionarItem(item1);
+            programa2.adicionarItem(item2);
+            programa2.adicionarItem(item3);
+            programa2.adicionarItem(item4);
+            programa3.adicionarItem(item8);
+            programa3.adicionarItem(item7);
+            programa3.adicionarItem(item6);
+            programa3.adicionarItem(item5);
+            programa3.adicionarItem(item4);
+            programa3.adicionarItem(item3);
+            programa3.adicionarItem(item2);
+            programa3.adicionarItem(item1);
+            sistema.adicionarPrograma(programa1);
+            sistema.adicionarPrograma(programa2);
+            sistema.adicionarPrograma(programa3);
+        } catch (Exception ex) {
+            Logger.getLogger(Sistema_Salud.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     void iniciarLogin(){
@@ -65,9 +97,7 @@ public class Sistema_Salud extends Application {
         }
     }
     
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String[] args) {
         launch(args);
     }

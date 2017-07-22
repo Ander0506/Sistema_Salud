@@ -20,13 +20,19 @@ public class Item implements Serializable {
 
     private final StringProperty nombre;
     private final BooleanProperty estado;
+    private final StringProperty codigo;
 
-    public Item(String nombre) throws Exception {
+    
+    public Item(String id, String nombre) throws Exception {
         if (nombre == null) {
             throw new Exception("EL nombre no puede Ser nulo");
         }
+        if (id == null) {
+            throw new Exception("EL id no puede Ser nulo");
+        }
 
         this.nombre = new SimpleStringProperty(nombre);
+        this.codigo = new SimpleStringProperty(id);
         this.estado = new SimpleBooleanProperty(false);
     }
 
@@ -50,6 +56,20 @@ public class Item implements Serializable {
             this.estado.set(estado);
         
     }
+    
+    public String getId() {
+        return codigo.get();
+    }
+
+    public void setId(String value) {
+        codigo.set(value);
+    }
+
+    public StringProperty idProperty() {
+        return codigo;
+    }
+    
+
 
     @Override
     public int hashCode() {
@@ -77,12 +97,16 @@ public class Item implements Serializable {
         if (!Objects.equals(this.estado, other.estado)) {
             return false;
         }
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "nombre:" + nombre + " estado:" + estado;
+        return "ID" + codigo + "nombre:" + nombre + " estado:" + estado;
     }
 
 }

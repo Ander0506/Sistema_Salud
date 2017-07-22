@@ -6,7 +6,6 @@
 package sistema_salud.modelo;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.Objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -18,51 +17,59 @@ import javafx.collections.ObservableList;
  * @author andre
  */
 public class Programa implements Serializable {
-    
-    private final StringProperty id;
-    private final StringProperty name;
-    private ObservableList<Columna> columnaProg;
 
-    public Programa(String id, String name) throws Exception {
-        if (id == null) { throw new Exception("EL id No puede Ser nulo"); }
-        if (name == null) { throw new Exception("EL nombre No puede Ser nulo"); }
-        
-        this.id = new SimpleStringProperty(id);
-        this.name = new SimpleStringProperty(name);
-        
-        columnaProg= FXCollections.observableArrayList();
+    private final StringProperty id;
+    private final StringProperty nombre;
+    private ObservableList<Item> items;
+
+    public Programa(String codigo, String nombre) throws Exception {
+        if (codigo == null) {
+            throw new Exception("EL codigo No puede Ser nulo");
+        }
+        if (nombre == null) {
+            throw new Exception("EL nombre No puede Ser nulo");
+        }
+
+        this.id = new SimpleStringProperty(codigo);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.items = FXCollections.observableArrayList();
+
     }
 
+    public ObservableList<Item> getItems() {
+        return items;
+    }
+    
     public String getId() {
         return id.get();
     }
 
     public void setId(String id) throws Exception {
         if (id == null) {
-            throw new Exception("ID No puede Ser nulo");
+            throw new Exception("EL codigo No puede Ser nulo");
         } else {
             this.id.set(id);
         }
     }
 
-    public String getName() {
-        return name.get();
+    public String getNombre() {
+        return nombre.get();
     }
 
-    public void setName(String name) throws Exception {
-        if (name == null) {
-            throw new Exception("NAME No puede Ser nulo");
+    public void setNombre(String Nombre) throws Exception {
+        if (nombre == null) {
+            throw new Exception("EL nombre No puede Ser nulo");
         } else {
-            this.name.set(name);
+            this.nombre.set(Nombre);
         }
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.columnaProg);
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.items);
         return hash;
     }
 
@@ -86,37 +93,29 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "id: " + id + " name: " + name + " columnaProg: " + columnaProg;
+        return "codigo: " + id + " Nombre: " + nombre + " Items: " + items;
     }
 
-    //Metodos para gestionar Columnas del Programa
-    
-    public void adicionarcolumna(Columna columnaAdicionar)throws Exception{
-       if (columnaAdicionar == null) {
-            throw new Exception("La columna no puede ser nulo");
+    //Metodos para gestionar lista de Items
+    public void adicionarItem(Item itemAdicionar) throws Exception {
+        if (itemAdicionar == null) {
+            throw new Exception("El Item no puede ser nulo");
         }
-        columnaProg.add(columnaAdicionar);
+        items.add(itemAdicionar);
     }
-    
-    public boolean buscarColumna(Columna columnaABuscar)throws Exception{
-        if (columnaABuscar == null) {
-            throw new Exception("La columna no se encuentra");
+
+    public boolean buscarItem(Item itemABuscar) throws Exception {
+        if (itemABuscar == null) {
+            throw new Exception("El item no se encuentra");
         }
-        return columnaProg.contains(columnaABuscar);
+        return items.contains(itemABuscar);
     }
-    
-    public boolean eliminarColumna(Columna columnaAEliminar) throws Exception{
-        if (columnaAEliminar == null) {
-            throw new Exception("La columna a eliminar no se encuentra");
+
+    public boolean eliminarItem(Item itemAEliminar) throws Exception {
+        if (itemAEliminar == null) {
+            throw new Exception("El item a eliminar no se encuentra");
         }
-        return columnaProg.remove(columnaAEliminar);
+        return items.remove(itemAEliminar);
     }
-    
-    
-    
-    
-    
-   
-    
-    
+
 }

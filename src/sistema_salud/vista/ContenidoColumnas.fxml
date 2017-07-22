@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.ContenidoColumnasController">
+   <children>
+      <Pane prefHeight="38.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
+         <children>
+            <Label alignment="CENTER" layoutX="431.0" layoutY="-2.0" text="Programas" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <SplitPane dividerPositions="0.313627254509018" layoutY="90.0" prefHeight="510.0" prefWidth="1000.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="445.0">
+               <children>
+                  <TableView fx:id="tablaProgramas" editable="true" layoutX="6.0" layoutY="3.0" prefHeight="548.0" prefWidth="286.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="45.0" text="Codigo" />
+                      <TableColumn fx:id="colNombre" prefWidth="121.0" text="Nombre" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="445.0">
+               <children>
+                  <TableView fx:id="tablaItems" editable="true" layoutX="6.0" layoutY="107.0" prefHeight="401.0" prefWidth="682.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="107.0">
+                     <columns>
+                        <TableColumn fx:id="colId1" prefWidth="45.0" text="Codigo" />
+                        <TableColumn fx:id="colNombre1" prefWidth="121.0" text="Nombre" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Pane prefHeight="38.0" prefWidth="682.0" style="-fx-background-color: #0a5a51;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="-2.0" text="Items" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="29.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="38.0" prefHeight="70.0" prefWidth="682.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutY="10.0" prefHeight="51.0" prefWidth="241.0" spacing="15.0">
+                           <children>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#agregarItems" prefHeight="35.0" prefWidth="97.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Agregar Items" textAlignment="CENTER" textFill="WHITE">
+                                 <effect>
+                                    <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#eliminarItems" prefHeight="35.0" prefWidth="97.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Eliminar Items" textAlignment="CENTER" textFill="WHITE">
+                                 <effect>
+                                    <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Pane layoutY="38.0" prefHeight="51.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
+         <children>
+            <TextField fx:id="txtBuscar" layoutX="724.0" layoutY="12.0" prefHeight="25.0" prefWidth="196.0" />
+            <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="932.0" layoutY="6.0" onAction="#buscarPrograma" prefHeight="35.0" prefWidth="42.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <SVGPath content="M946.5,10.7c0,0.6-0.2,1.1-0.6,1.5c-0.4,0.4-0.9,0.6-1.5,0.6c-0.6,0-1.1-0.2-1.5-0.6L937,6.4c-2,1.4-4.3,2.1-6.8,2.1c-1.6,0-3.2-0.3-4.7-0.9C924,7,922.7,6.1,921.7,5c-1.1-1.1-1.9-2.4-2.6-3.8c-0.6-1.5-0.9-3-0.9-4.7c0-1.6,0.3-3.2,0.9-4.7c0.6-1.5,1.5-2.8,2.6-3.8c1.1-1.1,2.4-1.9,3.8-2.6c1.5-0.6,3-0.9,4.7-0.9c1.6,0,3.2,0.3,4.7,0.9c1.5,0.6,2.8,1.5,3.8,2.6c1.1,1.1,1.9,2.4,2.6,3.8s0.9,3,0.9,4.7c0,2.5-0.7,4.8-2.1,6.8l5.8,5.8C946.3,9.6,946.5,10.1,946.5,10.7z M935.5,1.9c1.5-1.5,2.2-3.3,2.2-5.4c0-2.1-0.7-3.9-2.2-5.4c-1.5-1.5-3.3-2.2-5.4-2.2c-2.1,0-3.9,0.7-5.4,2.2c-1.5,1.5-2.2,3.3-2.2,5.4c0,2.1,0.7,3.9,2.2,5.4c1.5,1.5,3.3,2.2,5.4,2.2C932.3,4.2,934.1,3.4,935.5,1.9z" fill="WHITE" />
+               </graphic>
+            </JFXButton>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="-1.0" prefHeight="51.0" prefWidth="196.0" spacing="15.0">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#agregarPrograma" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M848.4,224.6c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.2-0.1-0.5-0.3-0.6c-0.2-0.2-0.4-0.3-0.6-0.3c-0.2,0-0.5,0.1-0.6,0.3C848.5,224.1,848.4,224.3,848.4,224.6z M861,218.7c0,0.2,0,0.4,0,0.5h2.1c-0.2-0.3-0.5-0.6-0.8-0.9c-0.5-0.4-1.1-0.7-1.7-0.9c0.1,0.2,0.1,0.4,0.2,0.6C861,218.2,861,218.4,861,218.7z M854.7,218.2c1.5,0,2.8-0.5,3.8-1.6c1.1-1.1,1.6-2.3,1.6-3.8c0-1.5-0.5-2.8-1.6-3.8c-1.1-1.1-2.3-1.6-3.8-1.6c-1.5,0-2.8,0.5-3.8,1.6c-1.1,1.1-1.6,2.3-1.6,3.8c0,1.5,0.5,2.8,1.6,3.8C852,217.7,853.2,218.2,854.7,218.2z M873,220.1c-0.1-0.1-0.2-0.1-0.3-0.1h-4.9v-4.9c0-0.1,0-0.2-0.1-0.3c-0.1-0.1-0.2-0.1-0.3-0.1h-2.7c-0.1,0-0.2,0-0.3,0.1c-0.1,0.1-0.1,0.2-0.1,0.3v4.9h-4.9c-0.1,0-0.2,0-0.3,0.1c-0.1,0.1-0.1,0.2-0.1,0.3v2.7c0,0.1,0,0.2,0.1,0.3c0.1,0.1,0.2,0.1,0.3,0.1h4.9v4.9c0,0.1,0,0.2,0.1,0.3c0.1,0.1,0.2,0.1,0.3,0.1h2.7c0.1,0,0.2,0,0.3-0.1c0.1-0.1,0.1-0.2,0.1-0.3v-4.9h4.9c0.1,0,0.2,0,0.3-0.1c0.1-0.1,0.1-0.2,0.1-0.3v-2.7C873.2,220.3,873.1,220.2,873,220.1z M862.9,224.9c0.3,0.3,0.5,0.6,0.5,1c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1c0-0.4,0.2-0.7,0.5-1v-0.5h-1.6c-0.3,0-0.7-0.1-0.9-0.4c-0.2-0.2-0.4-0.6-0.4-0.9v-0.9c-0.1,0-0.1,0.1-0.2,0.1c-0.4,0.4-0.5,0.8-0.5,1.3v1.3c0.3,0.3,0.5,0.6,0.5,1c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1c0-0.4,0.2-0.7,0.5-1v-1.3c0-1,0.4-1.8,1.1-2.6c0.4-0.4,0.9-0.7,1.5-0.9c0-0.2,0.1-0.5,0.3-0.7c0.2-0.2,0.5-0.3,0.7-0.3v-0.1c0-0.6-0.1-1-0.4-1.3c-1.2,1-2.6,1.5-4.2,1.5c-1.5,0-2.9-0.5-4.2-1.5c-0.2,0.3-0.4,0.7-0.4,1.3v2.9c0.5,0.2,1,0.5,1.3,1c0.3,0.5,0.5,1,0.5,1.6c0,0.8-0.3,1.4-0.8,1.9c-0.5,0.5-1.2,0.8-1.9,0.8c-0.8,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.2-0.8-1.9c0-0.6,0.2-1.1,0.5-1.6c0.3-0.5,0.8-0.8,1.3-1v-2.9c0-0.6,0.1-1.2,0.3-1.7c-0.6,0.1-1.2,0.4-1.7,0.9c-0.5,0.4-0.9,0.9-1.1,1.5c-0.3,0.5-0.5,1.2-0.7,1.9c-0.2,0.7-0.3,1.4-0.3,1.9c-0.1,0.6-0.1,1.2-0.1,1.8c0,1.1,0.3,2,1,2.7c0.7,0.6,1.6,1,2.7,1h12.3c1,0,1.9-0.3,2.6-0.8v-3.8h-0.6V224.9z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#editarPrograma" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M854.7,218.2c1.5,0,2.8-0.5,3.8-1.6c1.1-1.1,1.6-2.3,1.6-3.8c0-1.5-0.5-2.8-1.6-3.8c-1.1-1.1-2.3-1.6-3.8-1.6c-1.5,0-2.8,0.5-3.8,1.6c-1.1,1.1-1.6,2.3-1.6,3.8c0,1.5,0.5,2.8,1.6,3.8C851.9,217.7,853.2,218.2,854.7,218.2z M848.4,224.6c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.2-0.1-0.5-0.3-0.6c-0.2-0.2-0.4-0.3-0.6-0.3c-0.2,0-0.5,0.1-0.6,0.3C848.5,224.1,848.4,224.3,848.4,224.6z M861,218.7c0,0.2,0,0.4,0,0.6c0,0.1,0,0.4,0,0.7c0,0.3,0,0.5,0,0.6c0.3,0.2,0.6,0.4,0.9,0.7l1.6-1.6c-0.3-0.5-0.6-0.9-1.1-1.3c-0.5-0.4-1.1-0.7-1.7-0.9c0.1,0.2,0.1,0.4,0.2,0.6C860.9,218.2,861,218.4,861,218.7z M872.8,217.1l-2-2c-0.2-0.2-0.5-0.3-0.8-0.3c-0.3,0-0.6,0.1-0.8,0.3l-1.4,1.4l3.6,3.6l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.8C873.1,217.6,873,217.4,872.8,217.1z M859.2,227.8v-3.6c0-0.2,0.1-0.4,0.2-0.6l1.1-1.1c0,0-0.1-0.1-0.1-0.1c-0.4-0.4-0.8-0.5-1.3-0.5c-0.5,0-0.9,0.2-1.3,0.5c-0.4,0.4-0.5,0.8-0.5,1.3v1.3c0.3,0.3,0.5,0.6,0.5,1c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1c0-0.4,0.2-0.7,0.5-1v-1.3c0-1,0.4-1.8,1.1-2.6c0.7-0.7,1.6-1.1,2.6-1.1v-0.9c0-0.6-0.1-1-0.4-1.3c-1.2,1-2.6,1.5-4.2,1.5c-1.5,0-2.9-0.5-4.2-1.5c-0.2,0.3-0.4,0.7-0.4,1.3v2.9c0.5,0.2,1,0.5,1.3,1c0.3,0.5,0.5,1,0.5,1.6c0,0.8-0.3,1.4-0.8,1.9c-0.5,0.5-1.2,0.8-1.9,0.8c-0.8,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.2-0.8-1.9c0-0.6,0.2-1.1,0.5-1.6c0.3-0.5,0.8-0.8,1.3-1v-2.9c0-0.6,0.1-1.2,0.3-1.7c-0.6,0.1-1.2,0.4-1.7,0.9c-0.5,0.4-0.9,0.9-1.1,1.5c-0.3,0.5-0.5,1.2-0.7,1.9c-0.2,0.7-0.3,1.4-0.3,1.9c-0.1,0.6-0.1,1.2-0.1,1.8c0,1.1,0.3,2,1,2.7c0.7,0.6,1.6,1,2.7,1h12.3c0.7,0,1.3-0.1,1.9-0.4h-2.6C859.6,228.7,859.2,228.3,859.2,227.8z M860.1,224.2v3.6h3.6l7.2-7.2l-3.6-3.6L860.1,224.2z M863.2,226.7h-0.9v-1.1h-1.1v-0.9l0.8-0.8l2,2L863.2,226.7z M867.5,218.5c0.1,0,0.2,0.1,0.2,0.2c0,0.1,0,0.1-0.1,0.1l-4.7,4.7c0,0-0.1,0.1-0.1,0.1c-0.1,0-0.2-0.1-0.2-0.2c0-0.1,0-0.1,0.1-0.1l4.7-4.7C867.4,218.6,867.5,218.5,867.5,218.5z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#eliminarPrograma" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M855.3,218.3c1.3,0,2.4-0.4,3.4-1.2c0.1-0.4,0.3-0.7,0.5-1l1-1c0.3-0.6,0.4-1.4,0.4-2.1c0-1.5-0.5-2.8-1.6-3.8c-1.1-1.1-2.3-1.6-3.8-1.6s-2.8,0.5-3.8,1.6c-1.1,1.1-1.6,2.3-1.6,3.8c0,1.5,0.5,2.8,1.6,3.8C852.5,217.8,853.8,218.3,855.3,218.3z M849,224.6c0,0.2,0.1,0.5,0.3,0.6c0.2,0.2,0.4,0.3,0.6,0.3c0.2,0,0.5-0.1,0.6-0.3c0.2-0.2,0.3-0.4,0.3-0.6c0-0.2-0.1-0.5-0.3-0.6c-0.2-0.2-0.4-0.3-0.6-0.3c-0.2,0-0.5,0.1-0.6,0.3C849.1,224.2,849,224.4,849,224.6z M858.7,226.1c0-0.5,0.2-1,0.6-1.4l2-2c-0.1-0.1-0.1-0.2-0.2-0.2c-0.4-0.4-0.8-0.5-1.3-0.5c-0.5,0-0.9,0.2-1.3,0.5c-0.4,0.4-0.5,0.8-0.5,1.3v1.3c0.3,0.3,0.5,0.6,0.5,1c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1c0-0.4,0.2-0.7,0.5-1v-1.3c0-1,0.4-1.8,1.1-2.6c0.7-0.7,1.6-1.1,2.6-1.1v-0.7l-0.5-0.5c-0.2-0.2-0.3-0.4-0.4-0.6c-1.1,0.7-2.3,1.1-3.6,1.1c-1.5,0-2.9-0.5-4.2-1.5c-0.2,0.3-0.4,0.7-0.4,1.3v2.9c0.5,0.2,1,0.5,1.3,1c0.3,0.5,0.5,1,0.5,1.6c0,0.8-0.3,1.4-0.8,1.9c-0.5,0.5-1.2,0.8-1.9,0.8c-0.8,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.2-0.8-1.9c0-0.6,0.2-1.1,0.5-1.6c0.3-0.5,0.8-0.8,1.3-1v-2.9c0-0.6,0.1-1.2,0.3-1.7c-0.6,0.1-1.2,0.4-1.7,0.9c-0.5,0.4-0.9,0.9-1.1,1.5c-0.3,0.5-0.5,1.2-0.7,1.9c-0.2,0.7-0.3,1.4-0.3,1.9c-0.1,0.6-0.1,1.2-0.1,1.8c0,1.1,0.3,2,1,2.7c0.7,0.6,1.6,1,2.7,1h11.7l-1.6-1.6C858.9,227.1,858.7,226.6,858.7,226.1z M869.9,221.8l3.5-3.5c0.2-0.2,0.3-0.5,0.3-0.8c0-0.3-0.1-0.6-0.3-0.8l-1.6-1.6c-0.2-0.2-0.5-0.3-0.8-0.3s-0.6,0.1-0.8,0.3l-3.5,3.5l-3.5-3.5c-0.2-0.2-0.5-0.3-0.8-0.3c-0.3,0-0.6,0.1-0.8,0.3l-1.6,1.6c-0.2,0.2-0.3,0.5-0.3,0.8c0,0.3,0.1,0.6,0.3,0.8l3.5,3.5l-3.5,3.5c-0.2,0.2-0.3,0.5-0.3,0.8c0,0.3,0.1,0.6,0.3,0.8l1.6,1.6c0.2,0.2,0.5,0.3,0.8,0.3c0.3,0,0.6-0.1,0.8-0.3l3.5-3.5l3.5,3.5c0.2,0.2,0.5,0.3,0.8,0.3s0.6-0.1,0.8-0.3l1.6-1.6c0.2-0.2,0.3-0.5,0.3-0.8c0-0.3-0.1-0.6-0.3-0.8L869.9,221.8z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" radius="4.75" width="0.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
