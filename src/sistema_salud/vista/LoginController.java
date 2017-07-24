@@ -70,10 +70,19 @@ public class LoginController {
                 try {
                     Usuario user = sistema.RetornarUsuarioPorUser(userTxt.getText());
                     if (user != null && user.getPassword().equals(passwordTxt.getText())) {
+                        //Valido el estado
+                        if (user.getEstado() == false) {
+                           
+                            Alert alerta = new Alert(Alert.AlertType.ERROR);
+                            alerta.setTitle("Error!");
+                            alerta.setHeaderText("Usuario Invalido");
+                            alerta.setContentText("El usuario se Encuentra Desactivado");
+                            alerta.show();
+                        }else{
                              Stage ventana = (Stage)IniciarBt.getScene().getWindow();
                              ventana.close();
                              inicioPrincipal(user);
-
+                            }
                     } else {
                         Alert alerta = new Alert(Alert.AlertType.ERROR);
                         alerta.setTitle("Error!");

@@ -33,8 +33,8 @@ public class Sistema_Salud extends Application {
     
     void crearUsuario() {
         try {
-            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "M", "Anderson", "123");
-            Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "M", "Andres", "12345");
+            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "Masculino", "Anderson", "123");
+            Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "Masculino", "Andres", "12345");
             this.sistema.adicionarUsuario(user);
             this.sistema.adicionarUsuario(user2);
         } catch (Exception ex) {

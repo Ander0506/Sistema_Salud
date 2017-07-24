@@ -2,11 +2,15 @@
 package sistema_salud.vista;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -98,16 +102,69 @@ public class ContenidoUsuariosController {
         }
     }
     
-    @FXML
-    public void initialize() {
-//        txtBuscar.addEventHandler(KeyEvent.KEY_PRESSED,(e) -> {
-//           tablaUsuarios.setItems(sistema.retornarListaDeUsuario(txtBuscar.getText()));
-//        });
+    @FXML void editarUsuario() {
+        
+        try {
+           Usuario user = tablaUsuarios.getSelectionModel().selectedItemProperty().get();
+           FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/EditarUsuario.fxml"));
+            AnchorPane login = (AnchorPane) cargar.load();
+            Stage contenedor = new Stage();
+            contenedor.initStyle(StageStyle.UNDECORATED);
+            Scene escena = new Scene(login);
+            contenedor.setScene(escena);
+            EditarUsuarioController  NewUser = cargar.getController();
+            NewUser.setSistema(sistema);
+            NewUser.setUsuario(user);
+            contenedor.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    @FXML void desactivarUsuario(){
+        Usuario user = tablaUsuarios.getSelectionModel().selectedItemProperty().get();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Nombre: "+user.getNombre()+"\n Apellido: "+user.getApellidos());
+        alert.setContentText("Desea Desactivar este usuario?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           user.desactivar();
+            System.out.println(""+user.getEstado());
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }    
+    }
+    
+    @FXML void activarUsuario(){
+        Usuario user = tablaUsuarios.getSelectionModel().selectedItemProperty().get();
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Nombre: "+user.getNombre()+"\n Apellido: "+user.getApellidos());
+        alert.setContentText("Desea activar este usuario?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           user.activar();
+            System.out.println(""+user.getEstado());
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+        
+    } 
+            
+    @FXML public void initialize() {
+
         colNombre.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<Usuario, String>("apellidos"));
         colId.setCellValueFactory(new PropertyValueFactory<Usuario, String>("id"));
         detalleUsuario(null);
         tablaUsuarios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detalleUsuario(newValue));
+       
+
     }    
     
 }
