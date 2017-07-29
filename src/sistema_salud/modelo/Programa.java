@@ -21,6 +21,7 @@ public class Programa implements Serializable {
     private final StringProperty id;
     private final StringProperty nombre;
     private ObservableList<Item> items;
+    private ObservableList<Restriccion> restricciones;
 
     public Programa(String codigo, String nombre) throws Exception {
         if (codigo == null) {
@@ -33,9 +34,14 @@ public class Programa implements Serializable {
         this.id = new SimpleStringProperty(codigo);
         this.nombre = new SimpleStringProperty(nombre);
         this.items = FXCollections.observableArrayList();
+        this.restricciones = FXCollections.observableArrayList();
 
     }
 
+    public ObservableList<Restriccion> getRestricciones() {
+        return restricciones;
+    }
+    
     public ObservableList<Item> getItems() {
         return items;
     }
@@ -67,9 +73,10 @@ public class Programa implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.nombre);
-        hash = 53 * hash + Objects.hashCode(this.items);
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.nombre);
+        hash = 31 * hash + Objects.hashCode(this.items);
+        hash = 31 * hash + Objects.hashCode(this.restricciones);
         return hash;
     }
 
@@ -93,7 +100,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "codigo: " + id + " Nombre: " + nombre + " Items: " + items;
+        return "codigo: " + id + " Nombre: " + nombre + " Items: " + items + "Restricciones" + restricciones;
     }
 
     //Metodos para gestionar lista de Items
@@ -116,6 +123,29 @@ public class Programa implements Serializable {
             throw new Exception("El item a eliminar no se encuentra");
         }
         return items.remove(itemAEliminar);
+    }
+    
+    //Metodos para gestionar lista de Restricciones
+    
+    public void adicionarRestricciones(Restriccion restriccionAdicionar) throws Exception {
+        if (restriccionAdicionar == null) {
+            throw new Exception("La restriccion no puede ser nula");
+        }
+        restricciones.add(restriccionAdicionar);
+    }
+
+    public boolean buscarRestriccion(Restriccion restriccionABuscar) throws Exception {
+        if (restriccionABuscar == null) {
+            throw new Exception("La restriccion no se encuentra");
+        }
+        return restricciones.contains(restriccionABuscar);
+    }
+
+    public boolean eliminarRestriccion(Restriccion restriccionAEliminar) throws Exception {
+        if (restriccionAEliminar == null) {
+            throw new Exception("La restriccion a eliminar no se encuentra");
+        }
+        return restricciones.remove(restriccionAEliminar);
     }
 
 }

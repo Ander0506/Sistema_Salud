@@ -1,6 +1,7 @@
 
 package sistema_salud.vista;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -17,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sistema_salud.controlador.Sistema_Salud;
@@ -41,8 +41,16 @@ public class ContenidoUsuariosController {
     @FXML private Label labelId;
     @FXML private Label labelNombre;
     @FXML private Label labelApellido;
+    @FXML private JFXButton btEditarUsuario;
+    @FXML private JFXButton btActivarUsuario;
+    @FXML private JFXButton btDesactivarUsuario;
 
     private Sistema sistema = new Sistema();
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
@@ -51,6 +59,14 @@ public class ContenidoUsuariosController {
     
     private void detalleUsuario(Usuario usuarioSelect){
         if (usuarioSelect != null) {
+            if (usuarioSelect.getEstado()) {
+                btDesactivarUsuario.setDisable(false);
+                btActivarUsuario.setDisable(true);
+            }else{
+                btDesactivarUsuario.setDisable(true);
+                btActivarUsuario.setDisable(false);
+            }
+            btEditarUsuario.setDisable(false);
             labelId.setText(usuarioSelect.getId());
             labelNombre.setText(usuarioSelect.getNombre());
             labelApellido.setText(usuarioSelect.getApellidos());
@@ -102,27 +118,29 @@ public class ContenidoUsuariosController {
         }
     }
     
+    private void obtenerUsuario(Usuario user) {
+        usuario = user;
+    }
+   
     @FXML void editarUsuario() {
-        
         try {
-           Usuario user = tablaUsuarios.getSelectionModel().selectedItemProperty().get();
-           FXMLLoader cargar = new FXMLLoader();
+            FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/EditarUsuario.fxml"));
-            AnchorPane login = (AnchorPane) cargar.load();
+            AnchorPane editarUsuario = (AnchorPane) cargar.load();
             Stage contenedor = new Stage();
             contenedor.initStyle(StageStyle.UNDECORATED);
-            Scene escena = new Scene(login);
+            Scene escena = new Scene(editarUsuario);
             contenedor.setScene(escena);
-            EditarUsuarioController  NewUser = cargar.getController();
-            NewUser.setSistema(sistema);
-            NewUser.setUsuario(user);
+            EditarUsuarioController  editarUsuarioC = cargar.getController();
+            editarUsuarioC.setSistema(sistema);
+            editarUsuarioC.setUsuario(getUsuario());
             contenedor.show();
-            
         } catch (IOException ex) {
             Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+    
     @FXML void desactivarUsuario(){
         Usuario user = tablaUsuarios.getSelectionModel().selectedItemProperty().get();
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -157,12 +175,16 @@ public class ContenidoUsuariosController {
     } 
             
     @FXML public void initialize() {
-
+        btActivarUsuario.setDisable(true);
+        btDesactivarUsuario.setDisable(true);
+        btEditarUsuario.setDisable(true);
         colNombre.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<Usuario, String>("apellidos"));
         colId.setCellValueFactory(new PropertyValueFactory<Usuario, String>("id"));
         detalleUsuario(null);
+        obtenerUsuario(null);
         tablaUsuarios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detalleUsuario(newValue));
+        tablaUsuarios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> obtenerUsuario(newValue));
        
 
     }    

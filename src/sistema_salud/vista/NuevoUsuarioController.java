@@ -8,14 +8,9 @@ package sistema_salud.vista;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import static javafx.scene.input.KeyCode.A;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
@@ -25,7 +20,7 @@ import sistema_salud.modelo.Usuario;
  *
  * @author andre
  */
-public class NuevoUsuarioController implements Initializable {
+public class NuevoUsuarioController {
 
     private Sistema  sistema = new Sistema();
 
@@ -47,18 +42,16 @@ public class NuevoUsuarioController implements Initializable {
     ObservableList<String> items = FXCollections.observableArrayList("Administrador","Usuario");
     ObservableList<String> itemSex = FXCollections.observableArrayList("Femenino","Masculino");
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+   
+    @FXML
+    public void initialize() {
+       
         ComboBoxTipo.setItems(items);        
         comboBoxSexo.setItems(itemSex);
     }    
     
      @FXML
-    void agregarUsuario(ActionEvent event) throws Exception {
+    void agregarUsuario() throws Exception {
         
         Usuario nuevoUser = new Usuario(txtId.getText(), txtNombre.getText(),txtApellido.getText(), 
                 txtCorreo.getText(),ComboBoxTipo.getValue(), comboBoxSexo.getValue(), txtUser.getText(), txtPassword.getText());
@@ -70,7 +63,7 @@ public class NuevoUsuarioController implements Initializable {
     }
     
     @FXML
-    void cancelarUsuario(ActionEvent event) {
+    void cancelarUsuario() {
       Stage ventana = (Stage)btcancelar.getScene().getWindow();
        ventana.close();
     }

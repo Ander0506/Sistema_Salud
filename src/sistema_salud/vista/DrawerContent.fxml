@@ -28,24 +28,20 @@
                </font></Label>
          </children>
       </AnchorPane>
-      <JFXButton alignment="CENTER" onAction="#usuarios" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Usuarios">
+      <JFXButton fx:id="btUsuarios" alignment="CENTER" onAction="#usuarios" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Usuarios">
          <font>
             <Font size="16.0" />
          </font></JFXButton>
-      <JFXButton alignment="CENTER" onAction="#columnas" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Columnas">
+      <JFXButton fx:id="btProgramas" alignment="CENTER" onAction="#columnas" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Programas">
          <font>
             <Font size="16.0" />
          </font></JFXButton>
-      <JFXButton alignment="CENTER" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="EPS">
+      <JFXButton fx:id="btEPS" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="EPS">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
       <JFXButton alignment="CENTER" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Pacientes">
-         <font>
-            <Font size="16.0" />
-         </font></JFXButton>
-      <JFXButton alignment="CENTER" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="Programas">
          <font>
             <Font size="16.0" />
          </font></JFXButton>

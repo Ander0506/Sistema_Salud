@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -92,56 +90,7 @@ public class Sistema implements Serializable{
         }
         return epss.remove(epsAEliminar);
     }
-    public Eps RetornarEpsPorCodigo(String Id){
-         Iterator<Eps> it = epss.iterator(); 
-         boolean encontrado = false;
-         Eps actual = epss.get(0);
-      while(it.hasNext()&& encontrado == false){
-           actual = it.next();
-          if (actual.getCode().equals(Id)) {
-              encontrado = true;
-          }
-         }
-      return actual;
-    }
-    public Eps RetornarEpsPorNombre(String nombre){
-         Iterator<Eps> it = epss.iterator(); 
-         boolean encontrado = false;
-         Eps actual = epss.get(0);
-      while(it.hasNext()&& encontrado == false){
-           actual = it.next();
-          if (actual.getName().equals(nombre)) {
-              encontrado = true;
-          }
-         }
-      return actual;
-    }
-    public void ActualizarTablaEps (JTable tabla){
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel(); 
-        this.vaciarTabla(tabla);
-        int cantFilas = epss.size();
-        modelo.setRowCount(cantFilas);
-        for (int i = 0; i <cantFilas; i++) {
-            modelo.setValueAt(epss.get(i).getCode(), i, 0);
-            modelo.setValueAt(epss.get(i).getName(), i, 1);
-        }
-    }
-    public int GetPosElementEps(Object obj ){
-       
-        for (int i = 0; i < epss.size(); i++) {
-            Object actual = epss.get(i);
-            if(actual.equals(obj)){
-                return (i);
-            }
-        }
-       return -1;
-    }
-    public void EditarEps(String name, String code,Eps epsEditar) throws Exception{
-       int pos = GetPosElementEps(epsEditar);
-        epss.get(pos).setCode(code);
-        epss.get(pos).setName(name);
-    }
-    
+ 
     public void adicionarPaciente(Paciente UsuarioAdicionar)throws Exception{
        if (UsuarioAdicionar == null) {
             throw new Exception("El usuario no puede ser nulo");
@@ -220,19 +169,25 @@ public class Sistema implements Serializable{
          }
       return resultado;
     }
-    
-    
-    
-    
-
-
-//Metodos Auxiliares
-    
-    //Vaciar Tabla
-    public void vaciarTabla(JTable table){
-        DefaultTableModel dt = (DefaultTableModel) table.getModel();
-        for (int i = 0; i < dt.getRowCount(); i++) {
-            dt.removeRow(i);
-        }
+    public ObservableList<Programa> retornarListaDeProgramas(String programa){
+        ObservableList resultado = FXCollections.observableArrayList();
+         Iterator<Programa> it = programas.iterator(); 
+         Programa actual = programas.get(0); 
+         programa = programa.toLowerCase();
+         while(it.hasNext()){
+               actual = it.next();
+         
+               //Busco por nombre
+               if(actual.getNombre().toLowerCase().indexOf(programa) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+               //Busco por id y pregunto si esta en la lista ya
+               if(actual.getId().indexOf(programa) >= 0 &&  !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+         }
+      return resultado;
     }
 }

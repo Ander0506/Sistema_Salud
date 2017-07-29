@@ -51,7 +51,7 @@ public class LoginController {
         }
     }
 
-    @FXML void IniciarSesion(ActionEvent event) {
+    @FXML void IniciarSesion() {
         if (userTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Informacion");
@@ -71,7 +71,7 @@ public class LoginController {
                     Usuario user = sistema.RetornarUsuarioPorUser(userTxt.getText());
                     if (user != null && user.getPassword().equals(passwordTxt.getText())) {
                         //Valido el estado
-                        if (user.getEstado() == false) {
+                        if (!user.getEstado()) {
                            
                             Alert alerta = new Alert(Alert.AlertType.ERROR);
                             alerta.setTitle("Error!");

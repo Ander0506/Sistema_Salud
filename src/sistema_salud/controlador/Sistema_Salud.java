@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Item;
 import sistema_salud.modelo.Programa;
+import sistema_salud.modelo.Restriccion;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 import sistema_salud.vista.LoginController;
@@ -35,8 +36,11 @@ public class Sistema_Salud extends Application {
         try {
             Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "Masculino", "Anderson", "123");
             Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "Masculino", "Andres", "12345");
+            Usuario user3 = new Usuario("1895674532", "Byron", "Barrios", "BBarrios@hotmail.com", "Usuario", "Masculino", "Byron", "1234");
+//            user3.setEstado(false);
             this.sistema.adicionarUsuario(user);
             this.sistema.adicionarUsuario(user2);
+            this.sistema.adicionarUsuario(user3);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -57,6 +61,8 @@ public class Sistema_Salud extends Application {
             Item item6 = new Item("06", "item6");
             Item item7 = new Item("07", "item7");
             Item item8 = new Item("08", "item8");
+            Restriccion res1 = new Restriccion("01", 4.0, 12.0, "Ambos", "Solo niños mayores de 4 y menores de 12 años de ambos sexos");
+            Restriccion res2 = new Restriccion("02", 18.0, 0.0, "Femenino", "Mujeres mayores de 18 años");
             programa1.adicionarItem(item8);
             programa1.adicionarItem(item5);
             programa1.adicionarItem(item2);
@@ -72,6 +78,8 @@ public class Sistema_Salud extends Application {
             programa3.adicionarItem(item3);
             programa3.adicionarItem(item2);
             programa3.adicionarItem(item1);
+            programa1.adicionarRestricciones(res1);
+            programa1.adicionarRestricciones(res2);
             sistema.adicionarPrograma(programa1);
             sistema.adicionarPrograma(programa2);
             sistema.adicionarPrograma(programa3);

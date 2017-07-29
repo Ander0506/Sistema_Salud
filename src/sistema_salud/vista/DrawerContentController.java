@@ -2,8 +2,6 @@
 package sistema_salud.vista;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -20,6 +18,9 @@ public class DrawerContentController {
 
     @FXML private Label nombreUsuario;
     @FXML private JFXButton btSalir;
+    @FXML private JFXButton btUsuarios;
+    @FXML private JFXButton btProgramas;
+    @FXML private JFXButton btEPS;
     
     private Usuario nuevoUsuario;
     private Sistema sistema = new Sistema();
@@ -44,6 +45,11 @@ public class DrawerContentController {
      public void setNuevoUsuario(Usuario nuevoUsuario) {
         this.nuevoUsuario = nuevoUsuario;
         nombreUsuario.setText(this.nuevoUsuario.getNombre()+" "+this.nuevoUsuario.getApellidos());
+        if (nuevoUsuario.getTipo().equalsIgnoreCase("Usuario")) {
+           btUsuarios.setDisable(true);
+           btProgramas.setDisable(true);
+           btEPS.setDisable(true);
+        }
     }
     
     public void iniciarLogin(){
@@ -101,7 +107,7 @@ public class DrawerContentController {
         iniciarLogin();
     }
     
-    @FXML public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML public void initialize() {
+        
     }    
 }

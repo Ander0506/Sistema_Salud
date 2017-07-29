@@ -16,49 +16,49 @@ import javafx.beans.property.StringProperty;
  */
 public class Eps implements Serializable {
 
-    private final StringProperty name;
-    private final StringProperty code;
+    private final StringProperty nombre;
+    private final StringProperty codigo;
 
-    public Eps(String name, String code) throws Exception {
-        if (name == null) {
-            throw new Exception("NAME No puede Ser nulo");
+    public Eps(String nombre, String codigo) throws Exception {
+        if (nombre == null) {
+            throw new Exception("El nombre no puede ser nulo");
         }
-         if (code == null) {
-            throw new Exception("CODE No puede Ser nulo");
+         if (codigo == null) {
+            throw new Exception("El codigo no puede ser nulo");
         }
-        this.name = new SimpleStringProperty(name);
-        this.code = new SimpleStringProperty(code);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.codigo = new SimpleStringProperty(codigo);
     }
 
-    public String getName() {
-        return name.get();
+    public String getNombre() {
+        return nombre.get();
     }
 
-    public void setName(String name) throws Exception {
-        if (name == null) {
-            throw new Exception("NAME No puede Ser nulo");
+    public void setNombre(String nombre) throws Exception {
+        if (nombre == null) {
+            throw new Exception("El nombre no puede ser nulo");
         } else {
-            this.name.set(name); 
+            this.nombre.set(nombre); 
         }
     }
 
-    public String getCode() {
-        return code.get();
+    public String getCodigo() {
+        return codigo.get();
     }
 
-    public void setCode(String code) throws Exception {
-        if (code == null) {
-            throw new Exception("CODE No puede Ser nulo");
+    public void setCodigo(String codigo) throws Exception {
+        if (codigo == null) {
+            throw new Exception("El codigo no puede ser nulo");
         } else {
-            this.code.set(code);
+            this.codigo.set(codigo);
         }
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.code);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        hash = 29 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -74,7 +74,7 @@ public class Eps implements Serializable {
             return false;
         }
         final Eps other = (Eps) obj;
-        if (!Objects.equals(this.code, other.code)) {
+        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
@@ -82,7 +82,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return "name: " + name + " code: " + code;
+        return "nombre: " + nombre + " codigo: " + codigo;
     }
 
 }
