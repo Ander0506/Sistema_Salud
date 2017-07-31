@@ -98,8 +98,7 @@ public class ContenidoColumnasController {
         }
     }
     
-    @FXML
-    private void agregarItems(ActionEvent event) {
+    @FXML    private void agregarItems(ActionEvent event) {
         try {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/NuevoItem.fxml"));
@@ -110,14 +109,31 @@ public class ContenidoColumnasController {
             contenedor.setScene(escena);
             NuevoItemController newItemC = cargar.getController();
             newItemC.setSistema(sistema);
+            newItemC.setProg(getPrograma());
             contenedor.show();
         } catch (IOException ex) {
             Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
-    private void eliminarItems(ActionEvent event) {
+    @FXML    private void eliminarItems(ActionEvent event) {
+        Item item = tablaItems.getSelectionModel().selectedItemProperty().get();
+        Programa prog = getPrograma();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar Item");
+        alert.setHeaderText("Programa: "+prog.getNombre()+" ( "+prog.getId()+" ) \n Id: "+item.getId()+"\n Nombre: "+item.getNombre());
+        alert.setContentText("Desea eliminar este item?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                prog.eliminarItem(item);
+            } catch (Exception ex) {
+                Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
     }
 
     @FXML void buscarPrograma() {
@@ -146,6 +162,7 @@ public class ContenidoColumnasController {
     }
 
     @FXML void editarPrograma() {
+     
         try {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/EditarPrograma.fxml"));
@@ -162,12 +179,14 @@ public class ContenidoColumnasController {
         } catch (IOException ex) {
             Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+       
     }
 
     @FXML void eliminarPrograma() {
         Programa prog = tablaProgramas.getSelectionModel().selectedItemProperty().get();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
+        alert.setTitle("Eliminar programa");
         alert.setHeaderText(" Id: "+prog.getId()+"\n Nombre: "+prog.getNombre());
         alert.setContentText("Desea eliminar este programa?");
 
@@ -195,6 +214,7 @@ public class ContenidoColumnasController {
             contenedor.setScene(escena);
             NuevaRestriccionController newRestriccionC = cargar.getController();
             newRestriccionC.setSistema(sistema);
+            newRestriccionC.setProg(getPrograma());
             contenedor.show();
         } catch (IOException ex) {
             Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,11 +223,29 @@ public class ContenidoColumnasController {
     }
     
     @FXML void eliminarRestriccion() {
-
+        Restriccion restri = tablaRestricciones.getSelectionModel().selectedItemProperty().get();
+        Programa prog = getPrograma();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar Restriccion");
+        alert.setHeaderText("Programa: "+prog.getNombre()+" ( "+prog.getId()+" ) \n"
+                + " Id: "+restri.getId()+"\n Descripcion: "+restri.getDescripcion());
+        alert.setContentText("Desea eliminar esta restricion?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                prog.eliminarRestriccion(restri);
+            } catch (Exception ex) {
+                Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
+        
+        
     }
 
-    @FXML
-    public void initialize() {
+    @FXML    public void initialize() {
         btEliminarItem.setDisable(true);
         btEliminarRestriccion.setDisable(true);
         btEditarPrograma.setDisable(true);
