@@ -4,12 +4,15 @@ package sistema_salud.vista;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +25,7 @@ import sistema_salud.modelo.Item;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Restriccion;
 import sistema_salud.modelo.Sistema;
+import sistema_salud.modelo.Usuario;
 
 /**
  * FXML Controller class
@@ -143,9 +147,42 @@ public class ContenidoColumnasController {
     }
 
     @FXML void editarPrograma() {
+        try {
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/EditarPrograma.fxml"));
+            AnchorPane newPrograma = (AnchorPane) cargar.load();
+            Stage contenedor = new Stage();
+            contenedor.initStyle(StageStyle.UNDECORATED);
+            Scene escena = new Scene(newPrograma);
+            contenedor.setScene(escena);
+            EditarProgramaController editProgramaC = cargar.getController();
+            editProgramaC.setSistema(sistema);
+            editProgramaC.setPrograma(getPrograma());
+            contenedor.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML void eliminarPrograma() {
+        Programa prog = tablaProgramas.getSelectionModel().selectedItemProperty().get();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText(" Id: "+prog.getId()+"\n Nombre: "+prog.getNombre());
+        alert.setContentText("Desea eliminar este programa?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            try {
+                sistema.eliminarPrograma(prog);
+            } catch (Exception ex) {
+                Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }
     }
     
     @FXML void agregarRestriccion() {
