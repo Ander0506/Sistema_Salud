@@ -2,6 +2,8 @@
 package sistema_salud.modelo;
 
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -116,11 +118,19 @@ public class Usuario {
     }
     
     public void activar(){
-        estado.set(true);
+        try {
+            setEstado(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void desactivar(){
-        estado.set(false);
+        try {
+            setEstado(false);
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

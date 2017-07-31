@@ -36,7 +36,7 @@
          <font>
             <Font size="16.0" />
          </font></JFXButton>
-      <JFXButton fx:id="btEPS" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="EPS">
+      <JFXButton fx:id="btEPS" alignment="CENTER" onAction="#Eps" prefHeight="75.0" prefWidth="300.0" ripplerFill="WHITE" styleClass="boton" stylesheets="@../../css/style.css" text="EPS">
          <font>
             <Font size="16.0" />
          </font>

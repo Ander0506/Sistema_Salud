@@ -190,4 +190,25 @@ public class Sistema implements Serializable{
          }
       return resultado;
     }
+    public ObservableList<Eps> retornarListaDeEPS(String eps){
+        ObservableList resultado = FXCollections.observableArrayList();
+         Iterator<Eps> it = epss.iterator(); 
+         Eps actual = epss.get(0); 
+         eps = eps.toLowerCase();
+         while(it.hasNext()){
+               actual = it.next();
+         
+               //Busco por nombre
+               if(actual.getNombre().toLowerCase().indexOf(eps) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+               //Busco por id y pregunto si esta en la lista ya
+               if(actual.getCodigo().indexOf(eps) >= 0 &&  !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+         }
+      return resultado;
+    }
 }

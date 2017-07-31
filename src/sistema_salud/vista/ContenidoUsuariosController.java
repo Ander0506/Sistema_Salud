@@ -151,7 +151,6 @@ public class ContenidoUsuariosController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
            user.desactivar();
-            System.out.println(""+user.getEstado());
         } else {
             // ... user chose CANCEL or closed the dialog
         }    
@@ -167,7 +166,6 @@ public class ContenidoUsuariosController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
            user.activar();
-            System.out.println(""+user.getEstado());
         } else {
             // ... user chose CANCEL or closed the dialog
         }

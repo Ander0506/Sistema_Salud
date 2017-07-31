@@ -25,7 +25,6 @@ import sistema_salud.modelo.Item;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Restriccion;
 import sistema_salud.modelo.Sistema;
-import sistema_salud.modelo.Usuario;
 
 /**
  * FXML Controller class
@@ -155,9 +154,9 @@ public class ContenidoColumnasController {
             contenedor.initStyle(StageStyle.UNDECORATED);
             Scene escena = new Scene(newPrograma);
             contenedor.setScene(escena);
-            EditarProgramaController editProgramaC = cargar.getController();
-            editProgramaC.setSistema(sistema);
-            editProgramaC.setPrograma(getPrograma());
+//            EditarProgramaController editProgramaC = cargar.getController();
+//            editProgramaC.setSistema(sistema);
+//            editProgramaC.setPrograma(getPrograma());
             contenedor.show();
             
         } catch (IOException ex) {

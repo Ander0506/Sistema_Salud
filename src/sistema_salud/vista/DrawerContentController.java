@@ -90,6 +90,18 @@ public class DrawerContentController {
         }
     }
     
+     void contenidoEPS(){
+        try {
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoEPS.fxml"));
+            resultado = (AnchorPane)cargar.load();
+            ContenidoEPSController newEpsC = cargar.getController();
+            newEpsC.setSistema(sistema);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @FXML void columnas(){
         contenidoColumnas();
         Principal.presBoton(getResultado());
@@ -97,6 +109,12 @@ public class DrawerContentController {
     
     @FXML void usuarios(){
         contenidoUsuario();
+        Principal.presBoton(getResultado());
+    }
+    
+    
+    @FXML void Eps(){
+        contenidoEPS();
         Principal.presBoton(getResultado());
     }
     

@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sistema_salud.modelo.Eps;
 import sistema_salud.modelo.Item;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Restriccion;
@@ -30,6 +31,7 @@ public class Sistema_Salud extends Application {
        crearUsuario();
        crearProgramas();
        iniciarLogin();
+       crearEPS();
     }
     
     void crearUsuario() {
@@ -46,6 +48,19 @@ public class Sistema_Salud extends Application {
 
         }
 
+    }
+    
+    void crearEPS(){
+        try {
+            Eps eps1 = new Eps("Sura", "3110");
+            Eps eps2 = new Eps("Salud Total", "8710");
+            Eps eps3 = new Eps("Commeva", "5743");
+            sistema.adicionarEps(eps1);
+            sistema.adicionarEps(eps2);
+            sistema.adicionarEps(eps3);
+        } catch (Exception ex) {
+            Logger.getLogger(Sistema_Salud.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     void crearProgramas(){
