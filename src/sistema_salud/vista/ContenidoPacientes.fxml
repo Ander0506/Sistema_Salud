@@ -1,11 +1,313 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.ContenidoPacientesController">
+   <children>
+      <Pane prefHeight="38.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
+         <children>
+            <Label alignment="CENTER" layoutX="440.0" layoutY="-2.0" text="Pacientes" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+      </Pane>
+      <SplitPane dividerPositions="0.30060120240480964, 0.7424849699398798" layoutY="90.0" prefHeight="510.0" prefWidth="1000.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="445.0">
+               <children>
+                  <TableView fx:id="tablaPacientes" editable="true" layoutX="6.0" layoutY="3.0" prefHeight="548.0" prefWidth="286.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="colDocumento" prefWidth="92.0" text="Documento" />
+                        <TableColumn fx:id="colNombre" prefWidth="72.0" text="Nombre" />
+                        <TableColumn fx:id="colApellido" text="Apellido" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <GridPane layoutX="25.0" layoutY="71.0" prefHeight="406.0" prefWidth="607.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="71.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="158.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0" prefWidth="200.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Tipo de Documento" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Documento" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Fecha de Nacimiento" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Sexo" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Estado" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="EPS" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTipoDeDocumento" text="Label Tipo de Documento" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelDocumento" text="Label Documento" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelFechaDeNacimiento" text="Label Fecha de Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSexo" text="Label Sexo" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelEstado" text="Label Estado" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelEPS" text="Label EPS" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="ID">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Nombres" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Apellidos" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelId" text="Label ID" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelNombre" text="Label Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelApellido" text="Label Apellido" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label layoutX="10.0" layoutY="10.0" text="Detalle de Paciente" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+                     <font>
+                        <Font name="Calibri Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Pane prefHeight="38.0" prefWidth="254.0" style="-fx-background-color: #0a5a51;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="40.0" layoutY="2.0" text="Programas Inscritos" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <TableView fx:id="tablaProgramasInscritos" layoutX="-61.0" layoutY="38.0" prefHeight="416.0" prefWidth="275.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
+                     <columns>
+                        <TableColumn fx:id="colIdPro" prefWidth="83.0" text="ID" />
+                        <TableColumn fx:id="colNombrePro" prefWidth="157.0" text="Nombre" />
+                     </columns>
+                  </TableView>
+                  <GridPane alignment="CENTER" layoutX="14.0" layoutY="464.0" prefHeight="30.0" prefWidth="250.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXButton alignment="CENTER" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Gestionar" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton alignment="CENTER" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Eliminar" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <Pane layoutY="38.0" prefHeight="51.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
+         <children>
+            <TextField fx:id="txtBuscar" layoutX="724.0" layoutY="12.0" onKeyTyped="#buscarPaciente" prefHeight="25.0" prefWidth="196.0" />
+            <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="932.0" layoutY="6.0" onAction="#buscarPaciente" prefHeight="35.0" prefWidth="42.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <SVGPath content="M946.5,10.7c0,0.6-0.2,1.1-0.6,1.5c-0.4,0.4-0.9,0.6-1.5,0.6c-0.6,0-1.1-0.2-1.5-0.6L937,6.4c-2,1.4-4.3,2.1-6.8,2.1c-1.6,0-3.2-0.3-4.7-0.9C924,7,922.7,6.1,921.7,5c-1.1-1.1-1.9-2.4-2.6-3.8c-0.6-1.5-0.9-3-0.9-4.7c0-1.6,0.3-3.2,0.9-4.7c0.6-1.5,1.5-2.8,2.6-3.8c1.1-1.1,2.4-1.9,3.8-2.6c1.5-0.6,3-0.9,4.7-0.9c1.6,0,3.2,0.3,4.7,0.9c1.5,0.6,2.8,1.5,3.8,2.6c1.1,1.1,1.9,2.4,2.6,3.8s0.9,3,0.9,4.7c0,2.5-0.7,4.8-2.1,6.8l5.8,5.8C946.3,9.6,946.5,10.1,946.5,10.7z M935.5,1.9c1.5-1.5,2.2-3.3,2.2-5.4c0-2.1-0.7-3.9-2.2-5.4c-1.5-1.5-3.3-2.2-5.4-2.2c-2.1,0-3.9,0.7-5.4,2.2c-1.5,1.5-2.2,3.3-2.2,5.4c0,2.1,0.7,3.9,2.2,5.4c1.5,1.5,3.3,2.2,5.4,2.2C932.3,4.2,934.1,3.4,935.5,1.9z" fill="WHITE" />
+               </graphic>
+            </JFXButton>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="-1.0" prefHeight="51.0" prefWidth="527.0" spacing="15.0">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#agregarPaciente" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M862.8,231c0,0.5,0.2,0.9,0.5,1.2c0.4,0.4,0.8,0.5,1.2,0.5h3.5v3.3c-0.6,0.5-1.4,0.7-2.4,0.7h-12.1c-1.1,0-2-0.3-2.7-1c-0.7-0.6-1-1.5-1-2.6c0-0.5,0-1,0-1.4c0-0.5,0.1-1,0.2-1.5c0.1-0.5,0.2-1,0.4-1.5c0.1-0.5,0.3-0.9,0.6-1.3c0.2-0.4,0.5-0.8,0.9-1.1c0.3-0.3,0.7-0.6,1.2-0.7c0.5-0.2,1-0.3,1.5-0.3c0.2,0,0.4,0.1,0.5,0.2c0.7,0.6,1.4,1,2.1,1.3c0.7,0.3,1.5,0.4,2.3,0.4c0.8,0,1.6-0.1,2.3-0.4c0.7-0.3,1.4-0.7,2.1-1.3c0.2-0.2,0.4-0.2,0.5-0.2c1.2,0,2.2,0.4,3,1.3h-3.1c-0.5,0-0.9,0.2-1.2,0.5c-0.4,0.4-0.5,0.8-0.5,1.2V231z M863.5,224.5c-1,1-2.3,1.6-3.8,1.6c-1.5,0-2.7-0.5-3.8-1.6c-1-1-1.6-2.3-1.6-3.8c0-1.5,0.5-2.7,1.6-3.8c1-1,2.3-1.6,3.8-1.6c1.5,0,2.7,0.5,3.8,1.6c1,1,1.6,2.3,1.6,3.8C865,222.3,864.5,223.5,863.5,224.5z M873,227.9h4.9c0.1,0,0.2,0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3v2.7c0,0.1,0,0.2-0.1,0.3c-0.1,0.1-0.2,0.1-0.3,0.1H873v4.9c0,0.1,0,0.2-0.1,0.3c-0.1,0.1-0.2,0.1-0.3,0.1h-2.7c-0.1,0-0.2,0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3v-4.9h-4.9c-0.1,0-0.2,0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3v-2.7c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1h4.9V223c0-0.1,0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1h2.7c0.1,0,0.2,0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3V227.9z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btEditarPaciente" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M883.3,137.8v-3.6c0-0.2,0.1-0.4,0.2-0.6l3.7-3.7c-0.2-0.3-0.3-0.6-0.5-0.9c-0.4-0.5-0.8-0.9-1.4-1.2c-0.6-0.3-1.3-0.5-2-0.5c-1.3,1.2-2.9,1.8-4.7,1.8c-1.8,0-3.4-0.6-4.7-1.8c-0.8,0-1.4,0.2-2,0.5c-0.6,0.3-1.1,0.7-1.4,1.2c-0.4,0.5-0.7,1.1-0.9,1.8c-0.2,0.7-0.4,1.4-0.5,2.1c-0.1,0.7-0.1,1.4-0.1,2.2c0,1,0.3,1.9,0.9,2.6c0.6,0.7,1.4,1.1,2.3,1.1h12.9c0.4,0,0.7-0.1,1-0.2h-1.9C883.6,138.6,883.3,138.3,883.3,137.8z M878.5,128.2c1.5,0,2.7-0.5,3.8-1.6c1-1,1.6-2.3,1.6-3.8c0-1.5-0.5-2.7-1.6-3.8c-1-1-2.3-1.6-3.8-1.6c-1.5,0-2.7,0.5-3.8,1.6c-1,1-1.6,2.3-1.6,3.8c0,1.5,0.5,2.7,1.6,3.8C875.8,127.7,877.1,128.2,878.5,128.2z M896.8,127.1l-2-2c-0.2-0.2-0.5-0.3-0.8-0.3c-0.3,0-0.6,0.1-0.8,0.3l-1.4,1.4l3.6,3.6l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.8C897.1,127.6,897,127.3,896.8,127.1z M884.1,134.2v3.6h3.6l7.2-7.2l-3.6-3.6L884.1,134.2z M887.2,136.7h-0.9v-1.1h-1.1v-0.9l0.8-0.8l2,2L887.2,136.7z M891.5,128.5c0.1,0,0.2,0.1,0.2,0.2c0,0.1,0,0.1-0.1,0.1l-4.7,4.7c0,0-0.1,0.1-0.1,0.1c-0.1,0-0.2-0.1-0.2-0.2c0-0.1,0-0.1,0.1-0.1l4.7-4.7C891.4,128.5,891.5,128.5,891.5,128.5z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btActivarPaciente" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M895.3,193.1c1.3,2.2,1.9,4.5,1.9,7.1c0,2.6-0.6,4.9-1.9,7.1c-1.3,2.2-3,3.9-5.2,5.2c-2.2,1.3-4.5,1.9-7.1,1.9c-2.6,0-4.9-0.6-7.1-1.9c-2.2-1.3-3.9-3-5.2-5.2c-1.3-2.2-1.9-4.5-1.9-7.1c0-2.6,0.6-4.9,1.9-7.1c1.3-2.2,3-3.9,5.2-5.2c2.2-1.3,4.5-1.9,7.1-1.9c2.6,0,4.9,0.6,7.1,1.9C892.4,189.2,894.1,190.9,895.3,193.1z M891.8,205.2c0.9-1.5,1.3-3.2,1.3-5c0-1.8-0.4-3.5-1.3-5c-0.9-1.5-2.1-2.8-3.7-3.7c-1.5-0.9-3.2-1.3-5-1.3c-1.8,0-3.5,0.4-5,1.3c-1.5,0.9-2.8,2.1-3.7,3.7c-0.9,1.5-1.3,3.2-1.3,5c0,1.8,0.4,3.5,1.3,5c0.9,1.5,2.1,2.8,3.7,3.7c1.5,0.9,3.2,1.3,5,1.3c1.8,0,3.5-0.4,5-1.3C889.7,208,890.9,206.8,891.8,205.2z M890.5,198.7l-7.8,7.8c-0.2,0.2-0.5,0.4-0.8,0.4c-0.3,0-0.6-0.1-0.8-0.4l-5.4-5.4c-0.2-0.2-0.4-0.5-0.4-0.8c0-0.3,0.1-0.6,0.4-0.8l1.9-1.9c0.2-0.2,0.5-0.4,0.8-0.4c0.3,0,0.6,0.1,0.8,0.4l2.7,2.7l5.1-5.1c0.2-0.2,0.5-0.4,0.8-0.4c0.3,0,0.6,0.1,0.8,0.4l1.9,1.9c0.2,0.2,0.4,0.5,0.4,0.8S890.7,198.4,890.5,198.7z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btDesactivarPaciente" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="35.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M895.5,193.1c1.3,2.2,1.9,4.5,1.9,7.1c0,2.6-0.6,4.9-1.9,7.1c-1.3,2.2-3,3.9-5.2,5.2c-2.2,1.3-4.5,1.9-7.1,1.9c-2.6,0-4.9-0.6-7.1-1.9c-2.2-1.3-3.9-3-5.2-5.2c-1.3-2.2-1.9-4.5-1.9-7.1c0-2.6,0.6-4.9,1.9-7.1c1.3-2.2,3-3.9,5.2-5.2c2.2-1.3,4.5-1.9,7.1-1.9c2.6,0,4.9,0.6,7.1,1.9C892.5,189.2,894.2,190.9,895.5,193.1z M891.9,205.2c0.9-1.5,1.3-3.2,1.3-5c0-1.8-0.4-3.5-1.3-5c-0.9-1.5-2.1-2.8-3.7-3.7c-1.5-0.9-3.2-1.3-5-1.3c-1.8,0-3.5,0.4-5,1.3c-1.5,0.9-2.8,2.1-3.7,3.7c-0.9,1.5-1.3,3.2-1.3,5c0,1.8,0.4,3.5,1.3,5c0.9,1.5,2.1,2.8,3.7,3.7c1.5,0.9,3.2,1.3,5,1.3c1.8,0,3.5-0.4,5-1.3C889.8,208,891,206.8,891.9,205.2z M889.3,203.6l-2.7,2.7c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.4-0.2l-2.5-2.5l-2.5,2.5c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.4-0.2l-2.7-2.7c-0.1-0.1-0.2-0.3-0.2-0.4c0-0.2,0.1-0.3,0.2-0.4l2.5-2.5l-2.5-2.5c-0.1-0.1-0.2-0.3-0.2-0.4c0-0.2,0.1-0.3,0.2-0.4l2.7-2.7c0.1-0.1,0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l2.5,2.5l2.5-2.5c0.1-0.1,0.3-0.2,0.4-0.2c0.2,0,0.3,0.1,0.4,0.2l2.7,2.7c0.1,0.1,0.2,0.3,0.2,0.4c0,0.2-0.1,0.3-0.2,0.4l-2.5,2.5l2.5,2.5c0.1,0.1,0.2,0.3,0.2,0.4C889.5,203.3,889.4,203.5,889.3,203.6z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btInscribirPrograma" alignment="CENTER" prefHeight="35.0" prefWidth="132.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Inscribir Programa" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M521,170.5c0,0.1,0,0.2,0,0.2h1.1c-0.1-0.2-0.2-0.3-0.4-0.4c-0.2-0.2-0.5-0.4-0.8-0.4c0,0.1,0.1,0.2,0.1,0.3C521,170.2,521,170.3,521,170.5z M517.9,170.2c0.7,0,1.4-0.3,1.9-0.8c0.5-0.5,0.8-1.2,0.8-1.9c0-0.7-0.3-1.4-0.8-1.9c-0.5-0.5-1.2-0.8-1.9-0.8c-0.7,0-1.4,0.3-1.9,0.8c-0.5,0.5-0.8,1.2-0.8,1.9c0,0.7,0.3,1.4,0.8,1.9C516.5,170,517.1,170.2,517.9,170.2z M527,171.2c0,0-0.1-0.1-0.2-0.1h-2.4v-2.4c0-0.1,0-0.1-0.1-0.2c0,0-0.1-0.1-0.2-0.1h-1.3c-0.1,0-0.1,0-0.2,0.1c0,0-0.1,0.1-0.1,0.2v2.4h-2.4c-0.1,0-0.1,0-0.2,0.1c0,0-0.1,0.1-0.1,0.2v1.3c0,0.1,0,0.1,0.1,0.2c0,0,0.1,0.1,0.2,0.1h2.4v2.4c0,0.1,0,0.1,0.1,0.2c0,0,0.1,0.1,0.2,0.1h1.3c0.1,0,0.1,0,0.2-0.1c0,0,0.1-0.1,0.1-0.2v-2.4h2.4c0.1,0,0.1,0,0.2-0.1c0,0,0.1-0.1,0.1-0.2v-1.3C527.1,171.3,527.1,171.2,527,171.2z M514.7,173.4c0,0.1,0,0.2,0.1,0.3c0.1,0.1,0.2,0.1,0.3,0.1c0.1,0,0.2,0,0.3-0.1c0.1-0.1,0.1-0.2,0.1-0.3c0-0.1,0-0.2-0.1-0.3c-0.1-0.1-0.2-0.1-0.3-0.1c-0.1,0-0.2,0-0.3,0.1C514.7,173.2,514.7,173.3,514.7,173.4z M521.9,173.6c0.2,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.4,0.2-0.5v-0.3h-0.8c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-0.4c0,0-0.1,0-0.1,0.1c-0.2,0.2-0.3,0.4-0.3,0.6v0.6c0.2,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.4,0.2-0.5V173c0-0.5,0.2-0.9,0.5-1.3c0.2-0.2,0.5-0.4,0.7-0.4c0-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.2-0.2,0.4-0.2v0c0-0.3-0.1-0.5-0.2-0.7c-0.6,0.5-1.3,0.7-2.1,0.7c-0.8,0-1.5-0.2-2.1-0.7c-0.1,0.1-0.2,0.4-0.2,0.7v1.4c0.3,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.3,0.5,0.3,0.8c0,0.4-0.1,0.7-0.4,1c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4c-0.3-0.3-0.4-0.6-0.4-1c0-0.3,0.1-0.5,0.2-0.8c0.2-0.2,0.4-0.4,0.7-0.5v-1.4c0-0.3,0.1-0.6,0.2-0.8c-0.3,0.1-0.6,0.2-0.8,0.4c-0.2,0.2-0.4,0.5-0.6,0.7c-0.1,0.3-0.2,0.6-0.3,0.9c-0.1,0.4-0.1,0.7-0.2,1c0,0.3,0,0.6,0,0.9c0,0.6,0.2,1,0.5,1.3c0.3,0.3,0.8,0.5,1.4,0.5h6.2c0.5,0,0.9-0.1,1.3-0.4v-1.9h-0.3V173.6z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btGenerarReporte" alignment="CENTER" prefHeight="35.0" prefWidth="132.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" Generar Reporte" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <SVGPath content="M510.2,182c0.2,0.2,0.3,0.4,0.4,0.7c0.1,0.3,0.2,0.6,0.2,0.8v10.6c0,0.2-0.1,0.5-0.3,0.6c-0.2,0.2-0.4,0.3-0.6,0.3h-12.4c-0.2,0-0.5-0.1-0.6-0.3c-0.2-0.2-0.3-0.4-0.3-0.6v-14.8c0-0.2,0.1-0.5,0.3-0.6c0.2-0.2,0.4-0.3,0.6-0.3h8.3c0.2,0,0.5,0.1,0.8,0.2c0.3,0.1,0.5,0.3,0.7,0.4L510.2,182z M509.6,193.9v-9.4h-3.8c-0.2,0-0.5-0.1-0.6-0.3c-0.2-0.2-0.3-0.4-0.3-0.6v-3.8h-7.1v14.2H509.6z M500.2,185.9c0-0.1,0-0.2,0.1-0.2c0.1-0.1,0.1-0.1,0.2-0.1h6.5c0.1,0,0.2,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2v0.6c0,0.1,0,0.2-0.1,0.2c-0.1,0.1-0.1,0.1-0.2,0.1h-6.5c-0.1,0-0.2,0-0.2-0.1c-0.1-0.1-0.1-0.1-0.1-0.2V185.9z M507,188c0.1,0,0.2,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2v0.6c0,0.1,0,0.2-0.1,0.2c-0.1,0.1-0.1,0.1-0.2,0.1h-6.5c-0.1,0-0.2,0-0.2-0.1c-0.1-0.1-0.1-0.1-0.1-0.2v-0.6c0-0.1,0-0.2,0.1-0.2c0.1-0.1,0.1-0.1,0.2-0.1H507z M507,190.3c0.1,0,0.2,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.2v0.6c0,0.1,0,0.2-0.1,0.2c-0.1,0.1-0.1,0.1-0.2,0.1h-6.5c-0.1,0-0.2,0-0.2-0.1c-0.1-0.1-0.1-0.1-0.1-0.2v-0.6c0-0.1,0-0.2,0.1-0.2c0.1-0.1,0.1-0.1,0.2-0.1H507z M506.1,179.8v3.5h3.5c-0.1-0.2-0.1-0.3-0.2-0.4l-2.9-2.9C506.4,179.9,506.3,179.8,506.1,179.8z" fill="WHITE" />
+                     </graphic>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" radius="4.75" width="0.0" />
+         </effect>
+      </Pane>
+   </children>
 </AnchorPane>

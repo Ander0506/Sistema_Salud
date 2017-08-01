@@ -2,13 +2,14 @@
 package sistema_salud.modelo;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.LinkedList;
+import java.time.LocalDate;
 import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -23,34 +24,34 @@ public class Paciente implements Serializable {
     private final StringProperty apellido2;
     private final StringProperty tipoDocumento;
     private final StringProperty documento;
-    private Calendar fechaNacimiento; //Problema
+    private final ObjectProperty <LocalDate> fechaNacimiento;
     private final StringProperty sexo;
     private final ObservableList<Programa> programasAccedidos;
     private Eps epsUser;
     private final BooleanProperty estado;
 
-    public Paciente(int id, String nombre1, String nombre2,String apellido1, String apellido2,String TipoDocumento ,String Documento, Calendar FechaNacimiento, String sexo, Eps EpsUser) throws Exception {
+    public Paciente(int id, String nombre1, String nombre2,String apellido1, String apellido2,String tipoDocumento ,String documento, LocalDate fechaNacimiento, String sexo, Eps epsUser) throws Exception {
         if (id < 0) { throw new Exception("id No puede ser menor que cero"); }
         if (nombre1== null) { throw new Exception("nombre1 No puede Ser nulo"); }
         if (apellido1== null) { throw new Exception("apellido1 No puede Ser nulo"); } 
         if (apellido2== null) { throw new Exception("apellido2 No puede Ser nulo"); } 
-        if (Documento== null) { throw new Exception("documento No puede Ser nulo"); } 
-        if (FechaNacimiento.after(Calendar.getInstance())) { throw new Exception("Fecha de Naciemiento No puede Ser nulo"); } 
+        if (documento== null) { throw new Exception("documento No puede Ser nulo"); } 
+        if (fechaNacimiento == null) { throw new Exception("Fecha de Naciemiento No puede Ser nulo"); } 
         if (sexo == null) { throw new Exception("Sexo No puede Ser nulo"); } 
-        if (EpsUser == null) { throw new Exception("EpsUSer No puede Ser nulo"); } 
-        if (TipoDocumento == null){ throw new Exception("El tipo de documento no puede ser nulo");}
+        if (epsUser == null) { throw new Exception("EpsUSer No puede Ser nulo"); } 
+        if (tipoDocumento == null){ throw new Exception("El tipo de documento no puede ser nulo");}
         
         this.id = new SimpleIntegerProperty(id);
         this.nombre1 = new SimpleStringProperty(nombre1);
         this.nombre2 = new SimpleStringProperty(nombre2);
         this.apellido1 = new SimpleStringProperty(apellido1);
         this.apellido2 = new SimpleStringProperty(apellido2);
-        this.documento = new SimpleStringProperty(Documento);
+        this.documento = new SimpleStringProperty(documento);
         this.sexo = new SimpleStringProperty(sexo);
-        this.tipoDocumento = new SimpleStringProperty(TipoDocumento);
+        this.tipoDocumento = new SimpleStringProperty(tipoDocumento);
         this.estado = new SimpleBooleanProperty(true);
-        this.epsUser = EpsUser;
-        this.fechaNacimiento = FechaNacimiento;
+        this.epsUser = epsUser;
+        this.fechaNacimiento = new SimpleObjectProperty(fechaNacimiento);
         programasAccedidos = FXCollections.observableArrayList();
        
     }
@@ -66,6 +67,10 @@ public class Paciente implements Serializable {
             this.id.set(id);
         }
     }
+    
+    public IntegerProperty idProperty() {
+        return id;
+    }
 
     public String getNombre1() {
         return nombre1.get();
@@ -73,12 +78,28 @@ public class Paciente implements Serializable {
 
     public void setNombre1(String nombre1) throws Exception {
         if (nombre1 == null) {
-            throw new Exception("NOMBRE1 No puede Ser nulo");
+            throw new Exception("Primer nombre No puede Ser nulo");
         } else {
             this.nombre1.set(nombre1);
         }
     }
+    
+    public StringProperty nombre1Property() {
+        return nombre1;
+    }
 
+    public String getNombre2() {
+        return nombre2.get();
+    }
+
+    public void setNombre2(String nombre2) {
+        this.nombre2.set(nombre2);
+    }
+    
+    public StringProperty nombre2Property() {
+        return nombre2;
+    }
+    
     public String getApellido1() {
         return apellido1.get();
     }
@@ -89,6 +110,10 @@ public class Paciente implements Serializable {
         } else {
             this.apellido1.set(apellido1);
         }
+    }
+    
+    public StringProperty apellido1Property() {
+        return apellido1;
     }
 
     public String getApellido2() {
@@ -102,6 +127,10 @@ public class Paciente implements Serializable {
             this.apellido2.set(apellido2);
         }
     }
+    
+    public StringProperty apellido2Property() {
+        return apellido2;
+    }
 
     public String getDocumento() {
         return documento.get();
@@ -113,6 +142,10 @@ public class Paciente implements Serializable {
         } else {
             this.documento.set(documento);
         }
+    }
+    
+    public StringProperty documentoProperty() {
+        return documento;
     }
 
     public String getSexo() {
@@ -127,6 +160,10 @@ public class Paciente implements Serializable {
         }
     }
     
+    public StringProperty sexoProperty() {
+        return sexo;
+    }
+    
     public String getTipoDocumento() {
         return tipoDocumento.get();
     }
@@ -138,6 +175,22 @@ public class Paciente implements Serializable {
             this.tipoDocumento.set(tipoDocumento);
         }
     }
+    
+    public StringProperty tipoDocumentoProperty() {
+        return tipoDocumento;
+    }
+    
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento.get();
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento.set(fechaNacimiento);
+    }
+
+    public ObjectProperty<LocalDate> fechaNacimientoProperty() {
+        return fechaNacimiento;
+    }
 
     public boolean getEstado() {
         return estado.get();
@@ -147,29 +200,21 @@ public class Paciente implements Serializable {
             this.estado.set(estado);
         
     }
-    
-
-    public Calendar getFechaNacimiento() {
-        return fechaNacimiento;
-    }
 
     public Eps getEpsUser() {
         return epsUser;
     }
-    
-    public void setFechaNaciemiento(Calendar FechaNacimiento) throws Exception {
-        if (FechaNacimiento.after(Calendar.getInstance())) { 
-            throw new Exception("La Fecha de Naciemiento No puede ser despues de la actual"); }
-        else{
-        this.fechaNacimiento = FechaNacimiento;
+
+    public void setEpsUSer(Eps EpsUser) throws Exception {
+        if (EpsUser == null){
+            throw new Exception("La Eps No puede ser nulo");
+        }else{
+            this.epsUser = EpsUser;
         }
     }
     
-    public void setEpsUSer(Eps EpsUser) throws Exception {
-        if (EpsUser == null) { throw new Exception("La Eps No puede ser nulo"); }
-        else{
-        this.epsUser = EpsUser;
-        }
+    public ObservableList<Programa> getProgramas() {
+        return programasAccedidos;
     }
     
     public void activar(){
@@ -183,21 +228,21 @@ public class Paciente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.nombre1);
-        hash = 37 * hash + Objects.hashCode(this.nombre2);
-        hash = 37 * hash + Objects.hashCode(this.apellido1);
-        hash = 37 * hash + Objects.hashCode(this.apellido2);
-        hash = 37 * hash + Objects.hashCode(this.tipoDocumento);
-        hash = 37 * hash + Objects.hashCode(this.documento);
-        hash = 37 * hash + Objects.hashCode(this.fechaNacimiento);
-        hash = 37 * hash + Objects.hashCode(this.sexo);
-        hash = 37 * hash + Objects.hashCode(this.programasAccedidos);
-        hash = 37 * hash + Objects.hashCode(this.epsUser);
-        hash = 37 * hash + Objects.hashCode(this.estado);
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.nombre1);
+        hash = 17 * hash + Objects.hashCode(this.nombre2);
+        hash = 17 * hash + Objects.hashCode(this.apellido1);
+        hash = 17 * hash + Objects.hashCode(this.apellido2);
+        hash = 17 * hash + Objects.hashCode(this.tipoDocumento);
+        hash = 17 * hash + Objects.hashCode(this.documento);
+        hash = 17 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 17 * hash + Objects.hashCode(this.sexo);
+        hash = 17 * hash + Objects.hashCode(this.programasAccedidos);
+        hash = 17 * hash + Objects.hashCode(this.epsUser);
+        hash = 17 * hash + Objects.hashCode(this.estado);
         return hash;
     }
-    
+
 
     @Override
     public boolean equals(Object obj) {

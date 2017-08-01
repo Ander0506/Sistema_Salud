@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.ContenidoColumnasController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.ContenidoColumnasController">
    <children>
       <Pane prefHeight="38.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
          <children>
@@ -166,7 +166,7 @@
       </SplitPane>
       <Pane layoutY="38.0" prefHeight="51.0" prefWidth="1000.0" style="-fx-background-color: #109689;">
          <children>
-            <TextField fx:id="txtBuscar" layoutX="724.0" layoutY="12.0" onAction="#buscarPrograma" onKeyTyped="#buscarPrograma" prefHeight="25.0" prefWidth="196.0" />
+            <TextField fx:id="txtBuscar" layoutX="724.0" layoutY="12.0" onKeyTyped="#buscarPrograma" prefHeight="25.0" prefWidth="196.0" />
             <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="932.0" layoutY="6.0" onAction="#buscarPrograma" prefHeight="35.0" prefWidth="42.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text=" " textAlignment="CENTER" textFill="WHITE">
                <effect>
                   <DropShadow blurType="ONE_PASS_BOX" height="18.03" radius="8.515" width="18.03" />

@@ -10,7 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Eps;
+import sistema_salud.modelo.Fecha;
 import sistema_salud.modelo.Item;
+import sistema_salud.modelo.Paciente;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Restriccion;
 import sistema_salud.modelo.Sistema;
@@ -39,7 +41,7 @@ public class Sistema_Salud extends Application {
             Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "Masculino", "Anderson", "123");
             Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "Masculino", "Andres", "12345");
             Usuario user3 = new Usuario("1895674532", "Byron", "Barrios", "BBarrios@hotmail.com", "Usuario", "Masculino", "Byron", "1234");
-//            user3.setEstado(false);
+            user3.setEstado(false);
             this.sistema.adicionarUsuario(user);
             this.sistema.adicionarUsuario(user2);
             this.sistema.adicionarUsuario(user3);
@@ -58,6 +60,13 @@ public class Sistema_Salud extends Application {
             sistema.adicionarEps(eps1);
             sistema.adicionarEps(eps2);
             sistema.adicionarEps(eps3);
+            Paciente paciente1 = new Paciente(1, "Anderson", "Jesus", "Jimenez", "Visbal", "Cedula de Ciudadania", "1045674309", Fecha.string_A_LocalDate("24/01/1988"), "Masculino", eps1);
+            Paciente paciente2 = new Paciente(2, "Katherin", "Rocio", "Jimenez", "Visbal", "Cedula de Ciudadania", "1140830816", Fecha.string_A_LocalDate("09/04/1990"), "Femenino", eps2);
+            Paciente paciente3 = new Paciente(3, "Rocio", "Esther", "Visbal", "De Avila", "Cedula de Ciudadania", "32824081", Fecha.string_A_LocalDate("30/03/1967"), "Femenino", eps3);
+            paciente1.adicionarPrograma(sistema.getProgramas().get(0));
+            sistema.adicionarPaciente(paciente1);
+            sistema.adicionarPaciente(paciente2);
+            sistema.adicionarPaciente(paciente3);
         } catch (Exception ex) {
             Logger.getLogger(Sistema_Salud.class.getName()).log(Level.SEVERE, null, ex);
         }

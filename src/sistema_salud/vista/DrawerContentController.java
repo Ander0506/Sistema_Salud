@@ -74,7 +74,7 @@ public class DrawerContentController {
             ContenidoUsuariosController usuarioC = cargar.getController();
             usuarioC.setSistema(sistema);
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContenidoUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -86,11 +86,11 @@ public class DrawerContentController {
             ContenidoColumnasController columnaC = cargar.getController();
             columnaC.setSistema(sistema);
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-     void contenidoEPS(){
+    void contenidoEPS(){
         try {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoEPS.fxml"));
@@ -98,7 +98,19 @@ public class DrawerContentController {
             ContenidoEPSController newEpsC = cargar.getController();
             newEpsC.setSistema(sistema);
         } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContenidoEPSController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void contenidoPacientes(){
+        try {
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/ContenidoPacientes.fxml"));
+            resultado = (AnchorPane)cargar.load();
+            ContenidoPacientesController newPacienteC = cargar.getController();
+            newPacienteC.setSistema(sistema);
+        } catch (IOException ex) {
+            Logger.getLogger(ContenidoPacientesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -115,6 +127,11 @@ public class DrawerContentController {
     
     @FXML void Eps(){
         contenidoEPS();
+        Principal.presBoton(getResultado());
+    }
+    
+    @FXML void Pacientes(){
+        contenidoPacientes();
         Principal.presBoton(getResultado());
     }
     

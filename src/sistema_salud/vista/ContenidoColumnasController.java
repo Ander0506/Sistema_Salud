@@ -98,7 +98,7 @@ public class ContenidoColumnasController {
         }
     }
     
-    @FXML    private void agregarItems(ActionEvent event) {
+    @FXML void agregarItems() {
         try {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/NuevoItem.fxml"));
@@ -116,7 +116,7 @@ public class ContenidoColumnasController {
         }
     }
 
-    @FXML    private void eliminarItems(ActionEvent event) {
+    @FXML void eliminarItems() {
         Item item = tablaItems.getSelectionModel().selectedItemProperty().get();
         Programa prog = getPrograma();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

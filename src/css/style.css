@@ -31,3 +31,12 @@
     -fx-background-color: #0a5a51;
 }
 
+.table-cell {     
+    -fx-border-width: 0px;
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #19ddc9;
+}
+

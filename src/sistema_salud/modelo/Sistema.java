@@ -211,6 +211,31 @@ public class Sistema implements Serializable{
          }
       return resultado;
     }
+    public ObservableList<Paciente> retornarListaDePacientes(String paciente){
+        ObservableList resultado = FXCollections.observableArrayList();
+         Iterator<Paciente> it = pacientes.iterator(); 
+         Paciente actual = pacientes.get(0); 
+         paciente = paciente.toLowerCase();
+         while(it.hasNext()){
+               actual = it.next();
+         
+               //Busco por nombre
+               if(actual.getNombre1().toLowerCase().indexOf(paciente) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+               //Busco por apellido y pregunto si esta en la lista ya
+               if(actual.getApellido1().toLowerCase().indexOf(paciente) >= 0 && !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               //Busco por id y pregunto si esta en la lista ya
+               if(actual.getDocumento().toLowerCase().indexOf(paciente) >= 0 &&  !(resultado.contains(actual))){
+                   resultado.add(actual);
+               }
+               
+         }
+      return resultado;
+    }
 
     public boolean isNumeric(String cadena){
 	try {
