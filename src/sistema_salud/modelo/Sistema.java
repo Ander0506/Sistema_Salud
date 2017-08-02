@@ -90,6 +90,18 @@ public class Sistema implements Serializable{
         }
         return epss.remove(epsAEliminar);
     }
+    public Eps RetornarEpsPorNombre(String nombreAbuscar) {
+        Iterator<Eps> it = epss.iterator();
+        boolean encontrado = false;
+        Eps actual = epss.get(0);
+        while (it.hasNext() && encontrado == false) {
+            actual = it.next();
+            if (actual.getNombre().equals(nombreAbuscar)) {
+                encontrado = true;
+            }
+        }
+        return actual;
+    }
  
     public void adicionarPaciente(Paciente UsuarioAdicionar)throws Exception{
        if (UsuarioAdicionar == null) {
@@ -237,6 +249,19 @@ public class Sistema implements Serializable{
       return resultado;
     }
 
+    //metodo que uso para obtener los nombre y codigos de cada una de las Eps
+    // para posteirormente llenar el combo box
+//    public ObservableList<String> retornarNombresYCodigoEps(){
+//        ObservableList<String> resultado = FXCollections.observableArrayList();
+//         Iterator<Eps> it = epss.iterator(); 
+//         Eps actual = epss.get(0); 
+//         while(it.hasNext()){
+//               actual = it.next();
+//               resultado.add(actual.getNombre());
+//         }
+//      return resultado;
+//    }
+    
     public boolean isNumeric(String cadena){
 	try {
 		Integer.parseInt(cadena);

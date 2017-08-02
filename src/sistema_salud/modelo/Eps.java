@@ -104,7 +104,9 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return "nombre: " + nombre + " codigo: " + codigo;
+        return  this.nombre.getValue() + "  " + this.codigo.getValue();
     }
+
+    
 
 }

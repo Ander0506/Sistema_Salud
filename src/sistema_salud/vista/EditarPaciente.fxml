@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="nuevoUsuario" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.NuevoPacienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" styleClass="nuevoUsuario" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistema_salud.vista.EditarPacienteController">
    <children>
       <Pane layoutX="33.0" layoutY="33.0" prefHeight="60.0" prefWidth="545.0" style="-fx-background-color: #109689;" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="195.0" layoutY="5.0" text="Nuevo Paciente" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="195.0" layoutY="5.0" text="Editar Paciente" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>
@@ -65,7 +65,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="btOk" alignment="CENTER" onAction="#agregarPaciente" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Ok" textFill="WHITE">
+                  <JFXButton fx:id="btOk" alignment="CENTER" onAction="#editarPaciente" prefHeight="43.0" prefWidth="94.0" ripplerFill="WHITE" styleClass="btIniciarSesion" stylesheets="@../../css/style.css" text="Ok" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

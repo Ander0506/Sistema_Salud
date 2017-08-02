@@ -3,11 +3,14 @@ package sistema_salud.vista;
 
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,6 +24,7 @@ import sistema_salud.modelo.Fecha;
 import sistema_salud.modelo.Paciente;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Sistema;
+import sistema_salud.modelo.Usuario;
 
 
 public class ContenidoPacientesController {
@@ -48,11 +52,19 @@ public class ContenidoPacientesController {
     @FXML private TableColumn<Programa, String> colNombrePro;
     
     private Sistema sistema = new Sistema();
-
+    private Paciente paciente;
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
         tablaPacientes.setItems(sistema.getPacientes());
     }
+    private void obtenerPaciente(Paciente pac) {
+        paciente = pac;
+    }
+    
+    public Paciente getPaciente() {
+        return paciente;
+    }
+    
     
      private void detallePaciente(Paciente pacienteSelect){
         if (pacienteSelect != null) {
@@ -108,6 +120,57 @@ public class ContenidoPacientesController {
         }
     }
     
+    @FXML void editarPaciente(){
+        try {
+            FXMLLoader cargar = new FXMLLoader();
+            cargar.setLocation(Sistema_Salud.class.getResource("../vista/EditarPaciente.fxml"));
+            AnchorPane newPaciente = (AnchorPane) cargar.load();
+            Stage contenedor = new Stage();
+            contenedor.initStyle(StageStyle.UNDECORATED);
+            Scene escena = new Scene(newPaciente);
+            contenedor.setScene(escena);
+            EditarPacienteController editPacienteC = cargar.getController();
+            editPacienteC.setSistema(sistema);
+            editPacienteC.setPaciente(getPaciente());
+            contenedor.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ContenidoPacientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML void desactivarPaciente(){
+        Paciente pac = tablaPacientes.getSelectionModel().selectedItemProperty().get();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Desactivar Paciente");
+        alert.setHeaderText("Nombre: "+pac.getNombre1()+" "+pac.getNombre2()
+                + "\n Apellidos: "+pac.getApellido1()+" "+pac.getApellido2());
+        alert.setContentText("Desea Desactivar este Paciente?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           pac.desactivar();
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }    
+    }
+    
+    @FXML void activarPaciente(){
+        Paciente pac = tablaPacientes.getSelectionModel().selectedItemProperty().get();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Activar Paciente");
+        alert.setHeaderText("Nombre: "+pac.getNombre1()+" "+pac.getNombre2()
+                + "\n Apellidos: "+pac.getApellido1()+" "+pac.getApellido2());
+        alert.setContentText("Desea activar este Paciente?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           pac.activar();
+        } else {
+            // ... user chose CANCEL or closed the dialog
+        }    
+    }
+    
+    
     @FXML void buscarPaciente() {
         if (txtBuscar.getText().isEmpty()) {
             tablaPacientes.setItems(sistema.getPacientes());
@@ -129,7 +192,8 @@ public class ContenidoPacientesController {
         
         detallePaciente(null);
         tablaPacientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detallePaciente(newValue));
-        
+        tablaPacientes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> obtenerPaciente(newValue));
+
         colIdPro.setCellValueFactory(new PropertyValueFactory<Programa, String>("id"));
         colNombrePro.setCellValueFactory(new PropertyValueFactory<Programa, String>("nombre"));
         

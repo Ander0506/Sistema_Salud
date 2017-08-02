@@ -58,7 +58,8 @@ public class EditarEPSController implements Initializable {
         if (sistema.isNumeric(txtId.getText())) {
             try {
                 eps.setCodigo(txtId.getText());
-                eps.setNombre(txtNombre.getText());
+                eps.setNombre(txtNombre.getText());     
+                
                 Stage ventana = (Stage)btOk.getScene().getWindow();
                  ventana.close();
                 

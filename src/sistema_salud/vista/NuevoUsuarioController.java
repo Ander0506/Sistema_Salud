@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
@@ -52,13 +53,20 @@ public class NuevoUsuarioController {
     
      @FXML
     void agregarUsuario() throws Exception {
-        
+         if (sistema.isNumeric(txtId.getText())) {
         Usuario nuevoUser = new Usuario(txtId.getText(), txtNombre.getText(),txtApellido.getText(), 
                 txtCorreo.getText(),ComboBoxTipo.getValue(), comboBoxSexo.getValue(), txtUser.getText(), txtPassword.getText());
         sistema.adicionarUsuario(nuevoUser);
         
        Stage ventana = (Stage)BtOk.getScene().getWindow();
        ventana.close();
+         }else{
+              Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Informacion");
+            alerta.setHeaderText(null);
+            alerta.setContentText("El campo de ID debe ser numerico");
+            alerta.show();
+         }
         
     }
     
