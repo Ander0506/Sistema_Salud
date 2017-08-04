@@ -26,7 +26,7 @@ public class PrincipalController {
     @FXML private JFXDrawer contenido;
     
 
-private Sistema sistema = new Sistema();
+private Sistema sistema;
 private Usuario nuevoUsuario;
 
 

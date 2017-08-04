@@ -45,7 +45,7 @@ public class ContenidoUsuariosController {
     @FXML private JFXButton btActivarUsuario;
     @FXML private JFXButton btDesactivarUsuario;
 
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Usuario usuario;
 
     public Usuario getUsuario() {
@@ -183,7 +183,6 @@ public class ContenidoUsuariosController {
         obtenerUsuario(null);
         tablaUsuarios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> detalleUsuario(newValue));
         tablaUsuarios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> obtenerUsuario(newValue));
-       
 
     }    
     

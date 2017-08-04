@@ -1,120 +1,134 @@
 
 package sistema_salud.modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 
-public class Usuario {
+public class Usuario implements Serializable {
     
-    public final StringProperty nombre;
-    public final StringProperty user;
-    public final StringProperty apellidos;
-    public final StringProperty id;
-    public final StringProperty correo;
-    public final StringProperty tipo;
-    public final StringProperty sexo;
-    public final BooleanProperty estado;
-    public final StringProperty password;
+    public String nombre;
+    public String user;
+    public String apellidos;
+    public String id;
+    public String correo;
+    public String tipo;
+    public String sexo;
+    public boolean estado;
+    public String password;
+    
 
-    public Usuario(String id, String nombre, String apellidos, String correo, String tipo, String sexo,  String user, String password) throws Exception {
-        if(user == null){ throw new Exception("El usuario no puede ser nulo"); }
-        if(password == null){ throw new Exception("la contraseña no puede ser nula");}
- 
-        this.id = new SimpleStringProperty(id);
-        this.nombre = new SimpleStringProperty(nombre);
-        this.apellidos = new SimpleStringProperty(apellidos);
-        this.correo = new SimpleStringProperty(correo);
-        this.tipo = new SimpleStringProperty(tipo);
-        this.sexo = new SimpleStringProperty(sexo);
-        this.user = new SimpleStringProperty(user);
-        this.password = new SimpleStringProperty(password);
-        this.estado = new SimpleBooleanProperty(true);    
+    public Usuario(String id, String nombre, String apellidos, String correo, String tipo, String sexo, String user, String password)throws Exception{
+        if (user == null) {
+            throw new Exception("El user no puede ser nulo");
+        }
+        if (id == null) {
+            throw new Exception("El id no puede ser nulo");
+        }
+        if (password == null) {
+            throw new Exception("La contraseña no puede ser nulo");
+        }
+        if (nombre == null) {
+            throw new Exception("El nombre no puede ser nulo");
+        }
+        if (apellidos == null) {
+            throw new Exception("El apellido no puede ser nulo");
+        }
+        this.nombre = nombre;
+        this.user = user;
+        this.apellidos = apellidos;
+        this.id = id;
+        this.correo = correo;
+        this.tipo = tipo;
+        this.sexo = sexo;
+        this.password = password;
+        this.estado = true;
     }
 
     public String getNombre() {
-        return nombre.get();
+        return nombre;
     }
 
-    public void setNombre(String nombre) throws Exception {
-        this.nombre.set(nombre);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUser() {
-        return user.get();
+        return user;
     }
 
     public void setUser(String user) throws Exception {
         if (user == null) {
-            throw new Exception("USER No puede Ser nulo");
-        } else {
-            this.user.set(user);
+            throw new Exception("El user no puede ser nulo");
         }
+        this.user = user;
     }
 
     public String getApellidos() {
-        return apellidos.get();
+        return apellidos;
     }
 
-    public void setApellidos(String apellidos) throws Exception {
-        this.apellidos.set(apellidos);
+    public void setApellidos(String apellidos) throws Exception{
+         if (apellidos == null) {
+            throw new Exception("El apellido no puede ser nulo");
+        }
+        this.apellidos = apellidos;
     }
 
     public String getId() {
-        return id.get();
+        return id;
     }
 
     public void setId(String id) throws Exception {
-        this.id.set(id);
+        if (id == null) {
+            throw new Exception("El id no puede ser nulo");
+        }
+        this.id = id;
     }
 
     public String getCorreo() {
-        return correo.get();
+        return correo;
     }
 
-    public void setCorreo(String correo) throws Exception {
-        this.correo.set(correo);
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getTipo() {
-        return tipo.get();
+        return tipo;
     }
 
-    public void setTipo(String tipo) throws Exception {
-        this.tipo.set(tipo);
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getSexo() {
-        return sexo.get();
+        return sexo;
     }
 
-    public void setSexo(String sexo) throws Exception {
-        this.sexo.set(sexo);
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public Boolean getEstado() {
-        return estado.get();
+    public boolean getEstado() {
+        return estado;
     }
 
-    public void setEstado(Boolean estado) throws Exception {
-        this.estado.set(estado);
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public String getPassword() {
-        return password.get();
+        return password;
     }
 
     public void setPassword(String password) throws Exception {
         if (password == null) {
-            throw new Exception("PASSWORD No puede Ser nulo");
-        } else {
-            this.password.set(password);
+            throw new Exception("La contraseña no puede ser nulo");
         }
+        this.password = password;
     }
     
     public void activar(){
@@ -135,7 +149,7 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.nombre);
         hash = 97 * hash + Objects.hashCode(this.user);
         hash = 97 * hash + Objects.hashCode(this.apellidos);
@@ -143,10 +157,12 @@ public class Usuario {
         hash = 97 * hash + Objects.hashCode(this.correo);
         hash = 97 * hash + Objects.hashCode(this.tipo);
         hash = 97 * hash + Objects.hashCode(this.sexo);
-        hash = 97 * hash + Objects.hashCode(this.estado);
+        hash = 97 * hash + (this.estado ? 1 : 0);
         hash = 97 * hash + Objects.hashCode(this.password);
         return hash;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {

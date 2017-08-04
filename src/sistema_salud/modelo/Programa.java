@@ -1,27 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.modelo;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.Objects;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
-/**
- *
- * @author andre
- */
+
 public class Programa implements Serializable {
 
-    private final StringProperty id;
-    private final StringProperty nombre;
-    private ObservableList<Item> items;
-    private ObservableList<Restriccion> restricciones;
+    private String id;
+    private String nombre;
+    private LinkedList<Item> items;
+    private LinkedList<Restriccion> restricciones;
 
     public Programa(String codigo, String nombre) throws Exception {
         if (codigo == null) {
@@ -31,54 +21,56 @@ public class Programa implements Serializable {
             throw new Exception("EL nombre No puede Ser nulo");
         }
 
-        this.id = new SimpleStringProperty(codigo);
-        this.nombre = new SimpleStringProperty(nombre);
-        this.items = FXCollections.observableArrayList();
-        this.restricciones = FXCollections.observableArrayList();
+        this.id = codigo;
+        this.nombre = nombre;
+        this.items = new LinkedList<>();
+        this.restricciones = new LinkedList<>();
 
     }
 
-    public ObservableList<Restriccion> getRestricciones() {
+    public LinkedList<Restriccion> getRestricciones() {
         return restricciones;
     }
     
-    public ObservableList<Item> getItems() {
+    public LinkedList<Item> getItems() {
         return items;
     }
     
     public String getId() {
-        return id.get();
+        return id;
     }
 
     public void setId(String id) throws Exception {
         if (id == null) {
             throw new Exception("EL codigo No puede Ser nulo");
         } else {
-            this.id.set(id);
+            this.id = id;
         }
     }
 
     public String getNombre() {
-        return nombre.get();
+        return nombre;
     }
 
     public void setNombre(String Nombre) throws Exception {
         if (nombre == null) {
             throw new Exception("EL nombre No puede Ser nulo");
         } else {
-            this.nombre.set(Nombre);
+            this.nombre = Nombre;
         }
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.nombre);
-        hash = 31 * hash + Objects.hashCode(this.items);
-        hash = 31 * hash + Objects.hashCode(this.restricciones);
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.nombre);
+        hash = 13 * hash + Objects.hashCode(this.items);
+        hash = 13 * hash + Objects.hashCode(this.restricciones);
         return hash;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -100,7 +92,7 @@ public class Programa implements Serializable {
 
     @Override
     public String toString() {
-        return "codigo: " + id + " Nombre: " + nombre + " Items: " + items + "Restricciones" + restricciones;
+        return id + " " + nombre + "  " + items + " " + restricciones;
     }
 
     //Metodos para gestionar lista de Items

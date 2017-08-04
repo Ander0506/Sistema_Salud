@@ -1,7 +1,6 @@
 
 package sistema_salud.modelo;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javafx.beans.property.BooleanProperty;
@@ -15,7 +14,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Paciente implements Serializable {
+public class Paciente {
     
     private final IntegerProperty id;
     private final StringProperty nombre1;

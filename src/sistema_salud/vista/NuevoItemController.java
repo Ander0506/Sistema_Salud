@@ -22,13 +22,18 @@ public class NuevoItemController {
 
     
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
+    private ContenidoColumnasController contenidoProgramas;
     private Programa prog;
 
     public void setProg(Programa prog) {
         this.prog = prog;
     }
 
+    public void setContenidoProgramas(ContenidoColumnasController contenidoProgramas) {
+        this.contenidoProgramas = contenidoProgramas;
+    }
+    
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
@@ -37,7 +42,8 @@ public class NuevoItemController {
         if (sistema.isNumeric(txtId.getText())) {
             try {
                 Item item = new Item(txtId.getText(),txtNombre.getText());   
-                this.prog.adicionarItem(item);
+                prog.adicionarItem(item);
+                contenidoProgramas.setPrograma(prog);
                 Stage ventana = (Stage)btOk.getScene().getWindow();
                  ventana.close();
                  

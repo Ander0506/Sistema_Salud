@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -53,8 +54,10 @@ public class ContenidoColumnasController {
     @FXML private JFXButton btEliminarRestriccion;
     @FXML private JFXButton btAgregarRestriccion;
 
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Programa programa;
+    private ObservableList<Item> listaItems;
+    private ObservableList<Restriccion> listaRestriccion;
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
@@ -65,8 +68,12 @@ public class ContenidoColumnasController {
         return programa;
     }
 
-    private void setPrograma(Programa programa) {
-        this.programa = programa;
+    public void setPrograma(Programa programaSelect) {
+        this.programa = programaSelect;
+        listaItems = FXCollections.observableArrayList(programaSelect.getItems());
+        listaRestriccion = FXCollections.observableArrayList(programaSelect.getRestricciones());
+        tablaItems.setItems(listaItems);
+        tablaRestricciones.setItems(listaRestriccion);
     }
     
     private void listaItemsPorPrograma(Programa programaSelect){
@@ -75,8 +82,6 @@ public class ContenidoColumnasController {
             btAgregarRestriccion.setDisable(false);
             btEditarPrograma.setDisable(false);
             btEliminarPrograma.setDisable(false);
-            tablaItems.setItems(programaSelect.getItems());
-            tablaRestricciones.setItems(programaSelect.getRestricciones());  
         }
     }
     
@@ -109,7 +114,8 @@ public class ContenidoColumnasController {
             contenedor.setScene(escena);
             NuevoItemController newItemC = cargar.getController();
             newItemC.setSistema(sistema);
-            newItemC.setProg(getPrograma());
+            newItemC.setContenidoProgramas(this);
+//            newItemC.setProg(getPrograma());
             contenedor.show();
         } catch (IOException ex) {
             Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,6 +134,7 @@ public class ContenidoColumnasController {
         if (result.get() == ButtonType.OK) {
             try {
                 prog.eliminarItem(item);
+                setPrograma(prog);
             } catch (Exception ex) {
                 Logger.getLogger(ContenidoColumnasController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -172,8 +179,8 @@ public class ContenidoColumnasController {
             Scene escena = new Scene(newPrograma);
             contenedor.setScene(escena);
             EditarProgramaController editProgramaC = cargar.getController();
-           editProgramaC.setSistema(sistema);
-           editProgramaC.setPrograma(getPrograma());
+            editProgramaC.setSistema(sistema);
+            editProgramaC.setPrograma(getPrograma());
             contenedor.show();
             
         } catch (IOException ex) {

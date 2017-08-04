@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Eps;
-import sistema_salud.modelo.Item;
 import sistema_salud.modelo.Sistema;
 
 
@@ -20,7 +19,7 @@ public class NuevaEPSController {
     @FXML private JFXButton btOk;
     @FXML private JFXButton btCancelar;
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;

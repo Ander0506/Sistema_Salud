@@ -53,7 +53,7 @@
             <JFXTextField fx:id="txtNombre2" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="247.0" promptText="Segundo Nombre" GridPane.rowIndex="2" />
             <JFXTextField fx:id="txtApellido1" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="247.0" promptText="Primer Apellido" GridPane.rowIndex="3" />
             <JFXTextField fx:id="txtApellido2" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="247.0" promptText="Segundo Apellido" GridPane.rowIndex="4" />
-            <JFXComboBox fx:id="ComboBoxTipoDeDocumento" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="126.0" promptText="Tipo de Documento" GridPane.columnIndex="2" />
+            <JFXComboBox fx:id="ComboBoxTipoDeDocumento" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="203.0" promptText="Tipo de Documento" GridPane.columnIndex="2" />
             <JFXTextField fx:id="txtDocumento" focusColor="#109689" labelFloat="true" prefHeight="25.0" prefWidth="247.0" promptText="Doxumento" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <JFXComboBox fx:id="comboBoxSexo" focusColor="#109689" labelFloat="true" promptText="Sexo" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <GridPane alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="5">

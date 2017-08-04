@@ -33,7 +33,7 @@ public class ContenidoEPSController {
     @FXML private JFXButton btActivarEPS;
     @FXML private JFXButton btDesactivarEPS;
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Eps eps;
     
     public void setSistema(Sistema sistema) {

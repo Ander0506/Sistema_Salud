@@ -24,7 +24,6 @@ import sistema_salud.modelo.Fecha;
 import sistema_salud.modelo.Paciente;
 import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Sistema;
-import sistema_salud.modelo.Usuario;
 
 
 public class ContenidoPacientesController {
@@ -51,11 +50,12 @@ public class ContenidoPacientesController {
     @FXML private TableColumn<Programa, String> colIdPro;
     @FXML private TableColumn<Programa, String> colNombrePro;
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Paciente paciente;
+    
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
-        tablaPacientes.setItems(sistema.getPacientes());
+        tablaPacientes.setItems(this.sistema.getPacientes());
     }
     private void obtenerPaciente(Paciente pac) {
         paciente = pac;
@@ -65,8 +65,7 @@ public class ContenidoPacientesController {
         return paciente;
     }
     
-    
-     private void detallePaciente(Paciente pacienteSelect){
+    private void detallePaciente(Paciente pacienteSelect){
         if (pacienteSelect != null) {
             if (pacienteSelect.getEstado()) {
                 btDesactivarPaciente.setDisable(false);
@@ -101,6 +100,10 @@ public class ContenidoPacientesController {
             labelEPS.setText("");
             labelEstado.setText("");
         }
+    }
+    
+    @FXML void generarReporte(){
+        sistema.generarReporte();
     }
      
     @FXML void agregarPaciente(){

@@ -23,28 +23,36 @@ import sistema_salud.vista.LoginController;
 public class Sistema_Salud extends Application {
     
     private Stage contenedor;
+    private final String ruta = "src/Datos/Sistema.txt";
     private Sistema sistema = new Sistema();
+    
 
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
     
     @Override
     public void start(Stage contenedor) {
        this.contenedor = contenedor;
        this.contenedor.setTitle("Login");
-       crearUsuario();
-       crearProgramas();
+//       sistema.cargar(ruta);
+//       crearUsuario();
+//       sistema.guardar(ruta);
+//       crearProgramas();
+//       crearEPS();
        iniciarLogin();
-       crearEPS();
     }
     
     void crearUsuario() {
         try {
-            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "Masculino", "Anderson", "123");
-            Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "Masculino", "Andres", "12345");
-            Usuario user3 = new Usuario("1895674532", "Byron", "Barrios", "BBarrios@hotmail.com", "Usuario", "Masculino", "Byron", "1234");
-            user3.setEstado(false);
-            this.sistema.adicionarUsuario(user);
-            this.sistema.adicionarUsuario(user2);
-            this.sistema.adicionarUsuario(user3);
+            Usuario user = new Usuario("123456789", "Admin", "xxxx", "xxxx@xxx.com", "Administrador", "Masculino", "Admin", "0000");
+//            Usuario user = new Usuario("1045674309", "Anderson", "Jimenez", "andersonjesusujv@hotmail.com", "Administrador", "Masculino", "Anderson", "123");
+//            Usuario user2 = new Usuario("1067890354", "Andres", "Padilla", "andrestrilli@hotmail.com", "Administrador", "Masculino", "Andres", "12345");
+//            Usuario user3 = new Usuario("1895674532", "Byron", "Barrios", "BBarrios@hotmail.com", "Usuario", "Masculino", "Byron", "1234");
+//            user3.setEstado(false);
+            sistema.adicionarUsuario(user);
+//            this.sistema.adicionarUsuario(user2);
+//            this.sistema.adicionarUsuario(user3);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -129,7 +137,7 @@ public class Sistema_Salud extends Application {
         }
     }
     
-  
+   
     public static void main(String[] args) {
         launch(args);
     }

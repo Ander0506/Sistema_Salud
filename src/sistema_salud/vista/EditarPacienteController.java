@@ -1,36 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.vista;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import sistema_salud.modelo.Eps;
 import sistema_salud.modelo.Paciente;
-import sistema_salud.modelo.Programa;
 import sistema_salud.modelo.Sistema;
 
-/**
- * FXML Controller class
- *
- * @author andre
- */
-public class EditarPacienteController implements Initializable {
+
+public class EditarPacienteController {
 
     @FXML    private JFXTextField txtId;
     @FXML    private JFXTextField txtNombre1;
@@ -47,9 +34,9 @@ public class EditarPacienteController implements Initializable {
     
     
     ObservableList<String> itemSex = FXCollections.observableArrayList("Femenino","Masculino");
-    ObservableList<String> itemDoc = FXCollections.observableArrayList("Targeta Identidad.","Cedula de Ciudadania.","Cedula Extranjero");
+    ObservableList<String> itemDoc = FXCollections.observableArrayList("Targeta Identidad","Cedula de Ciudadania","Cedula Extranjero");
     
-    private Sistema  sistema = new Sistema();
+    private Sistema  sistema;
     private Paciente paciente;
             
      public void setSistema(Sistema sistema) {
@@ -68,23 +55,16 @@ public class EditarPacienteController implements Initializable {
          comboBoxSexo.setValue(pac.getSexo());
          txtFechaNacimiento.setValue(pac.getFechaNacimiento());
          comboBoxEps.setValue(pac.getEpsUser());
-         
-         
      }
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
+   
+    @FXML
+    public void initialize() {
         comboBoxSexo.setItems(itemSex);
         ComboBoxTipoDeDocumento.setItems(itemDoc);
     }    
 
     @FXML
-    private void editarPaciente() {
-        
+    void editarPaciente() {
          if (sistema.isNumeric(txtId.getText())) {
              try {
                  paciente.setId(Integer.parseInt(txtId.getText()));

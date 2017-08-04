@@ -5,27 +5,36 @@
  */
 package sistema_salud.modelo;
 
-import java.io.Serializable;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author andre
  */
-public class Sistema implements Serializable{
+public class Sistema {
     
-    private ObservableList<Programa> programas;
-    private ObservableList<Eps> epss;
-    private ObservableList<Paciente> pacientes;
-    private ObservableList<Usuario> usuarios;
+    private final ObservableList<Programa> programas;
+    private final ObservableList<Eps> epss;
+    private final ObservableList<Paciente> pacientes;
+    private final ObservableList<Usuario> usuarios;
+    
+    private final String ruta = "src/Datos/Sistema.txt";
+    
+    private SistemaSer sistemaSer;
    
     public Sistema() {
-        programas = FXCollections.observableArrayList();
-        epss = FXCollections.observableArrayList();
-        pacientes = FXCollections.observableArrayList(); 
-        usuarios = FXCollections.observableArrayList();
+        sistemaSer = SistemaSer.cargar(ruta);
+        programas = FXCollections.observableArrayList(sistemaSer.getProgramas());
+        epss = FXCollections.observableArrayList(sistemaSer.getEpss());
+        pacientes = FXCollections.observableArrayList(sistemaSer.getPacientes()); 
+        usuarios = FXCollections.observableArrayList(sistemaSer.getUsuarios());
     }
 
     public ObservableList<Programa> getProgramas() {
@@ -248,6 +257,43 @@ public class Sistema implements Serializable{
          }
       return resultado;
     }
+    
+    public void generarReporte(){
+        FileFilter filtro2 = new FileNameExtensionFilter("Archivos TXT", "txt"); 
+        JFileChooser jF1= new JFileChooser();
+        jF1.addChoosableFileFilter(filtro2);
+        String ruta = ""; 
+        try{ 
+            if(jF1.showSaveDialog(null)==jF1.APPROVE_OPTION){ 
+                ruta = jF1.getSelectedFile().getAbsolutePath()+".txt"; 
+            }
+            File archivo = new File(ruta);
+            FileWriter escribir = new FileWriter(archivo,true);
+            for (int i = 0; i < pacientes.size(); i++) {
+                Paciente actual = pacientes.get(i);
+                escribir.write(actual.getId()+"|"+actual.getNombre1()+"|"+actual.getNombre2()+"|"+actual.getApellido1()
+                                +"|"+actual.getApellido2()+"|"+actual.getTipoDocumento()+"|"+actual.getDocumento()
+                                +"|"+actual.getSexo()+"|"+actual.getFechaNacimiento()+"|"+actual.getEpsUser().getNombre()+"|");
+                if (actual.getProgramas().size() == 0) {
+                    escribir.write("\r\n");
+                }else{
+                    for (int j = 0; j < actual.getProgramas().size(); j++) {
+                        Programa programaActual = actual.getProgramas().get(j);
+                        if ((actual.getProgramas().size()-1) == j) {
+                            escribir.write(programaActual.getNombre()+"\r\n");
+                        }else{
+                            escribir.write(programaActual.getNombre()+"|");
+                        }
+                    }
+                }
+                
+            }
+            escribir.close();
+            System.out.println(ruta);
+        }catch (Exception ex){ 
+            ex.printStackTrace(); 
+        } 
+    }
 
     //metodo que uso para obtener los nombre y codigos de cada una de las Eps
     // para posteirormente llenar el combo box
@@ -269,5 +315,18 @@ public class Sistema implements Serializable{
 	} catch (NumberFormatException nfe){
 		return false;
 	}
-}
+    }
+    
+    public void guardar(String ruta){
+        sistemaSer.setEpss(epss);
+        sistemaSer.setPacientes(pacientes);
+        sistemaSer.setProgramas(programas);
+        sistemaSer.setUsuarios(usuarios);
+        sistemaSer.guardar(ruta);
+    }
+    
+//    public void cargar(String ruta){
+//        sistemaSer.cargar(ruta);
+//    }
+    
 }

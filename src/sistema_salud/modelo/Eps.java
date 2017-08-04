@@ -1,7 +1,6 @@
 
 package sistema_salud.modelo;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +9,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Eps implements Serializable {
+public class Eps{
 
     private final StringProperty nombre;
     private final StringProperty codigo;
@@ -104,7 +103,7 @@ public class Eps implements Serializable {
 
     @Override
     public String toString() {
-        return  this.nombre.getValue() + "  " + this.codigo.getValue();
+        return  this.nombre.getValue();
     }
 
     

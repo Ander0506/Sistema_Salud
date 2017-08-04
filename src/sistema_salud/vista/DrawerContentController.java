@@ -23,9 +23,10 @@ public class DrawerContentController {
     @FXML private JFXButton btEPS;
     
     private Usuario nuevoUsuario;
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private AnchorPane resultado = new AnchorPane();
     private PrincipalController Principal;
+     private final String ruta = "src/Datos/Sistema.txt";
 
 
     public void setPrincipal(PrincipalController Principal) {
@@ -139,6 +140,7 @@ public class DrawerContentController {
     @FXML void salir(){
         Stage ventana = (Stage)btSalir.getScene().getWindow();
         ventana.close();
+        sistema.guardar(ruta);
         iniciarLogin();
     }
     

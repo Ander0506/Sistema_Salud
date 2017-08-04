@@ -27,7 +27,7 @@ public class NuevaRestriccionController {
     @FXML    private JFXButton btOk;
     @FXML    private JFXButton btCancelar;
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Programa prog;
 
     public void setProg(Programa prog) {

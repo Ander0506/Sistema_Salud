@@ -3,17 +3,15 @@ package sistema_salud.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Item implements Serializable {
 
-    private final StringProperty nombre;
-    private final BooleanProperty estado;
-    private final StringProperty codigo;
+    private String nombre;
+    private Boolean estado;
+    private String codigo;
 
     
     public Item(String id, String nombre) throws Exception {
@@ -24,51 +22,64 @@ public class Item implements Serializable {
             throw new Exception("EL id no puede Ser nulo");
         }
 
-        this.nombre = new SimpleStringProperty(nombre);
-        this.codigo = new SimpleStringProperty(id);
-        this.estado = new SimpleBooleanProperty(false);
+        this.nombre = nombre;
+        this.codigo = id;
+        this.estado = false;
     }
 
     public String getNombre() {
-        return nombre.get();
+        return nombre;
     }
 
     public void setNombre(String nombre) throws Exception {
         if (nombre == null) {
-            throw new Exception("NOMBRE No puede Ser nulo");
-        } else {
-            this.nombre.set(nombre);
+            throw new Exception("El nombre No puede Ser nulo");
         }
+            this.nombre = nombre;
     }
 
     public boolean getEstado() {
-        return estado.get();
+        return estado;
     }
 
-    public void setEstado(boolean estado) throws Exception {
-            this.estado.set(estado);
+    public void setEstado(boolean estado) {
+            this.estado = estado;
         
     }
     
     public String getId() {
-        return codigo.get();
-    }
-
-    public void setId(String value) {
-        codigo.set(value);
-    }
-
-    public StringProperty idProperty() {
         return codigo;
     }
-    
 
+    public void setId(String value) throws Exception {
+        if (value == null) {
+            throw new Exception("EL id no puede Ser nulo");
+        }
+        this.codigo = value;
+    }
+
+    public void activar(){
+        try {
+            setEstado(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void desactivar(){
+        try {
+            setEstado(false);
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.nombre);
-        hash = 79 * hash + Objects.hashCode(this.estado);
+        hash = 47 * hash + Objects.hashCode(this.nombre);
+        hash = 47 * hash + Objects.hashCode(this.estado);
+        hash = 47 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -99,7 +110,7 @@ public class Item implements Serializable {
     
     @Override
     public String toString() {
-        return "ID" + codigo + "nombre:" + nombre + " estado:" + estado;
+        return codigo + " " + nombre + " " + estado;
     }
 
 }

@@ -1,19 +1,17 @@
 
 package sistema_salud.modelo;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.io.Serializable;
+import java.util.Objects;
 
 
-public class Restriccion {
+public class Restriccion implements Serializable {
 
-    private final StringProperty id;
-    private final DoubleProperty edadMin;
-    private final DoubleProperty edadMax;
-    private final StringProperty descripcion;
-    private final StringProperty sexo;
+    private String id;
+    private Double edadMin;
+    private Double edadMax;
+    private String descripcion;
+    private String sexo;
 
     public Restriccion(String id, Double edadMin, Double edadMax, String sexo, String descripcion)throws Exception{
         if (id == null) {
@@ -28,73 +26,87 @@ public class Restriccion {
         if (edadMax < 0) {
             throw new Exception("La edad maxima debe ser posistiva");
         }
-        this.id = new SimpleStringProperty(id);
-        this.sexo = new SimpleStringProperty(sexo);
-        this.edadMin = new SimpleDoubleProperty(edadMin);
-        this.edadMax = new SimpleDoubleProperty(edadMax);
-        this.descripcion = new SimpleStringProperty(descripcion);
+        this.id = id;
+        this.sexo = sexo;
+        this.edadMin = edadMin;
+        this.edadMax = edadMax;
+        this.descripcion = descripcion;
     }
     
     public String getSexo() {
-        return sexo.get();
+        return sexo;
     }
 
     public void setSexo(String value) {
-        sexo.set(value);
+        this.sexo = value;
     }
 
-    public StringProperty sexoProperty() {
-        return sexo;
-    }
-    
     public String getDescripcion() {
-        return descripcion.get();
+        return descripcion;
     }
 
     public void setDescripcion(String value) {
-        descripcion.set(value);
+        this.descripcion = value;
     }
 
-    public StringProperty descripcionProperty() {
-        return descripcion;
-    }
     public Double getEdadMax() {
-        return edadMax.get();
+        return edadMax;
     }
 
     public void setEdadMax(Double value) {
-        edadMax.set(value);
+        this.edadMax = value;
     }
-
-    public DoubleProperty edadMaxProperty() {
-        return edadMax;
-    }
-    
 
     public Double getEdadMin() {
-        return edadMin.get();
+        return edadMin;
     }
 
     public void setEdadMin(Double value) {
-        edadMin.set(value);
+        this.edadMin = value;
     }
-
-    public DoubleProperty edadMinProperty() {
-        return edadMin;
-    }
-    
 
     public String getId() {
-        return id.get();
+        return id;
     }
 
     public void setId(String value) {
-        id.set(value);
+        this.id = value;
     }
 
-    public StringProperty idProperty() {
-        return id;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.edadMin);
+        hash = 73 * hash + Objects.hashCode(this.edadMax);
+        hash = 73 * hash + Objects.hashCode(this.descripcion);
+        hash = 73 * hash + Objects.hashCode(this.sexo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Restriccion other = (Restriccion) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + descripcion;
     }
     
     
+
 }

@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.vista;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,14 +14,10 @@ import javafx.stage.Stage;
 import sistema_salud.modelo.Sistema;
 import sistema_salud.modelo.Usuario;
 
-/**
- * FXML Controller class
- *
- * @author andre
- */
+
 public class NuevoUsuarioController {
 
-    private Sistema  sistema = new Sistema();
+    private Sistema  sistema;
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
@@ -52,14 +46,18 @@ public class NuevoUsuarioController {
     }    
     
      @FXML
-    void agregarUsuario() throws Exception {
+    void agregarUsuario() {
          if (sistema.isNumeric(txtId.getText())) {
-        Usuario nuevoUser = new Usuario(txtId.getText(), txtNombre.getText(),txtApellido.getText(), 
-                txtCorreo.getText(),ComboBoxTipo.getValue(), comboBoxSexo.getValue(), txtUser.getText(), txtPassword.getText());
-        sistema.adicionarUsuario(nuevoUser);
-        
-       Stage ventana = (Stage)BtOk.getScene().getWindow();
-       ventana.close();
+             try {
+                 Usuario nuevoUser = new Usuario(txtId.getText(), txtNombre.getText(),txtApellido.getText(),
+                         txtCorreo.getText(),ComboBoxTipo.getValue(), comboBoxSexo.getValue(), txtUser.getText(), txtPassword.getText());
+                 sistema.adicionarUsuario(nuevoUser);
+                 
+                 Stage ventana = (Stage)BtOk.getScene().getWindow();
+                 ventana.close();
+             } catch (Exception ex) {
+                 Logger.getLogger(NuevoUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+             }
          }else{
               Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Informacion");

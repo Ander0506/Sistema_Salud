@@ -20,7 +20,7 @@ public class NuevoProgramaController {
     @FXML private JFXButton btCancelar;
 
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;

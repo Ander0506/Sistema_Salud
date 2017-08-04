@@ -15,7 +15,7 @@ import sistema_salud.modelo.Usuario;
 
 
 public class EditarUsuarioController {
-    private Sistema  sistema = new Sistema();
+    private Sistema  sistema;
     private Usuario user;
 
     public void setUsuario(Usuario usuario){

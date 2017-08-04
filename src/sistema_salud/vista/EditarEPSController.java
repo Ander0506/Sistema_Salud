@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistema_salud.vista;
 
 import com.jfoenix.controls.JFXButton;
@@ -19,23 +15,14 @@ import javafx.stage.Stage;
 import sistema_salud.modelo.Eps;
 import sistema_salud.modelo.Sistema;
 
-/**
- * FXML Controller class
- *
- * @author andre
- */
-public class EditarEPSController implements Initializable {
+public class EditarEPSController {
 
-    @FXML
-    private JFXTextField txtId;
-    @FXML
-    private JFXTextField txtNombre;
-    @FXML
-    private JFXButton btOk;
-    @FXML
-    private JFXButton btCancelar;
+    @FXML private JFXTextField txtId;
+    @FXML private JFXTextField txtNombre;
+    @FXML private JFXButton btOk;
+    @FXML private JFXButton btCancelar;
 
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     private Eps eps;
     
     public void setSistema(Sistema sistema) {
@@ -48,13 +35,12 @@ public class EditarEPSController implements Initializable {
         txtNombre.setText(this.eps.getNombre());        
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    public void initialize() {
     }    
 
     @FXML
-    private void editarEps(ActionEvent event) {
+    private void editarEps() {
         if (sistema.isNumeric(txtId.getText())) {
             try {
                 eps.setCodigo(txtId.getText());
@@ -76,7 +62,7 @@ public class EditarEPSController implements Initializable {
     }
 
     @FXML
-    private void cancelar(ActionEvent event) {
+    private void cancelar() {
          Stage ventana = (Stage) btCancelar.getScene().getWindow();
                 ventana.close();
     }

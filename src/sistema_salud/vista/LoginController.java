@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,7 +24,7 @@ public class LoginController {
     @FXML private JFXTextField userTxt;
     @FXML private JFXButton IniciarBt;
     @FXML private JFXPasswordField passwordTxt;
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;

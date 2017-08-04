@@ -5,12 +5,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -22,7 +20,7 @@ import sistema_salud.modelo.Sistema;
 public class NuevoPacienteController {
     
     
-    private Sistema sistema = new Sistema();
+    private Sistema sistema;
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
         this.comboBoxEps.setItems(sistema.getEpss());
