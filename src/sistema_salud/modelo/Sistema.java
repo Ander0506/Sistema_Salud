@@ -158,7 +158,7 @@ public class Sistema {
          Usuario actual = usuarios.get(0);
          while(it.hasNext()&& encontrado == false){
                actual = it.next();
-          if (actual.getUser().equals(user)) {
+          if (actual.getUser().equalsIgnoreCase(user)) {
               encontrado = true;
           }
          }
@@ -236,21 +236,20 @@ public class Sistema {
         ObservableList resultado = FXCollections.observableArrayList();
          Iterator<Paciente> it = pacientes.iterator(); 
          Paciente actual = pacientes.get(0); 
-         paciente = paciente.toLowerCase();
          while(it.hasNext()){
                actual = it.next();
          
                //Busco por nombre
-               if(actual.getNombre1().toLowerCase().indexOf(paciente) >= 0 && !(resultado.contains(actual))){
+               if(actual.getNombre1().equalsIgnoreCase(paciente) && !(resultado.contains(actual))){
                    resultado.add(actual);
                }
                
                //Busco por apellido y pregunto si esta en la lista ya
-               if(actual.getApellido1().toLowerCase().indexOf(paciente) >= 0 && !(resultado.contains(actual))){
+               if(actual.getApellido1().equalsIgnoreCase(paciente) && !(resultado.contains(actual))){
                    resultado.add(actual);
                }
                //Busco por id y pregunto si esta en la lista ya
-               if(actual.getDocumento().toLowerCase().indexOf(paciente) >= 0 &&  !(resultado.contains(actual))){
+               if(actual.getDocumento().equalsIgnoreCase(paciente) &&  !(resultado.contains(actual))){
                    resultado.add(actual);
                }
                

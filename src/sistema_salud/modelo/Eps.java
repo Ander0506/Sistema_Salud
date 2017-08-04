@@ -1,70 +1,58 @@
-
 package sistema_salud.modelo;
 
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
-public class Eps{
+public class Eps {
 
-    private final StringProperty nombre;
-    private final StringProperty codigo;
-     public final BooleanProperty estado;
+    private String nombre;
+    private String codigo;
+    private boolean estado;
 
     public Eps(String nombre, String codigo) throws Exception {
+
         if (nombre == null) {
-            throw new Exception("El nombre no puede ser nulo");
+            throw new Exception("NOMBRE No puede Ser nulo");
         }
-         if (codigo == null) {
-            throw new Exception("El codigo no puede ser nulo");
+        if (codigo == null) {
+            throw new Exception("CODIGO No puede Ser nulo");
         }
-        this.nombre = new SimpleStringProperty(nombre);
-        this.codigo = new SimpleStringProperty(codigo);
-        this.estado = new SimpleBooleanProperty(true);    
+
+        this.nombre = nombre;
+        this.codigo = codigo;
     }
 
     public String getNombre() {
-        return nombre.get();
+        return nombre;
     }
 
     public void setNombre(String nombre) throws Exception {
         if (nombre == null) {
-            throw new Exception("El nombre no puede ser nulo");
+            throw new Exception("NOMBRE No puede Ser nulo");
         } else {
-            this.nombre.set(nombre); 
+            this.nombre = nombre;
         }
     }
 
     public String getCodigo() {
-        return codigo.get();
+        return codigo;
     }
 
     public void setCodigo(String codigo) throws Exception {
         if (codigo == null) {
-            throw new Exception("El codigo no puede ser nulo");
+            throw new Exception("CODIGO No puede Ser nulo");
         } else {
-            this.codigo.set(codigo);
+            this.codigo = codigo;
         }
     }
-    
-     public Boolean getEstado() {
-        return estado.get();
+
+    public boolean getEstado() {
+        return estado;
     }
 
-    public void setEstado(Boolean estado) throws Exception {
-        this.estado.set(estado);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.nombre);
-        hash = 29 * hash + Objects.hashCode(this.codigo);
-        return hash;
+    public void setEstado(boolean estado) throws Exception {
+        this.estado = estado;
     }
     
     public void activar(){
@@ -84,6 +72,15 @@ public class Eps{
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.codigo);
+        hash = 89 * hash + (this.estado ? 1 : 0);
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -95,17 +92,19 @@ public class Eps{
             return false;
         }
         final Eps other = (Eps) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return  this.nombre.getValue();
+        return this.nombre;
     }
-
-    
 
 }

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -54,6 +55,9 @@ public class LoginController {
         if (userTxt.getText().isEmpty() || passwordTxt.getText().isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Informacion");
+//             Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+//             stage.getIcons().add(new Image(this.getClass().getResource("../Imagenes/Fondo Usuario-01.png").toString()));
+//              
             alerta.setHeaderText(null);
             alerta.setContentText("Uno de los campos esta vacio");
             alerta.show();
@@ -62,6 +66,8 @@ public class LoginController {
             if (sistema.getUsuarios().isEmpty()) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Error!");
+//                Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+//                stage.getIcons().add(new Image(this.getClass().getResource("../Imagenes/Fondo Usuario-01.png").toString()));
                 alerta.setHeaderText("Usuario No Encontrado");
                 alerta.setContentText("Lista de usuarios vacia");
                 alerta.show();
