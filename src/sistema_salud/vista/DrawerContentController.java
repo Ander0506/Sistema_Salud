@@ -59,6 +59,8 @@ public class DrawerContentController {
             FXMLLoader cargar = new FXMLLoader();
             cargar.setLocation(Sistema_Salud.class.getResource("../vista/Login.fxml"));
             AnchorPane login = (AnchorPane)cargar.load();
+            LoginController loginC = cargar.getController();
+            loginC.setSistema(sistema);
             Scene escena = new Scene(login);
             contenedor.setScene(escena);
             contenedor.show();

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -50,6 +52,8 @@ public class ContenidoPacientesController {
     @FXML private TableColumn<Programa, String> colIdPro;
     @FXML private TableColumn<Programa, String> colNombrePro;
     
+    
+    private ObservableList<Programa> listaProgramas;
     private Sistema sistema;
     private Paciente paciente;
     
@@ -59,6 +63,8 @@ public class ContenidoPacientesController {
     }
     private void obtenerPaciente(Paciente pac) {
         paciente = pac;
+        listaProgramas = FXCollections.observableArrayList(pac.getProgramas());
+        tablaProgramasInscritos.setItems(listaProgramas);
     }
     
     public Paciente getPaciente() {
@@ -75,7 +81,6 @@ public class ContenidoPacientesController {
                 btActivarPaciente.setDisable(false);
             }
             btEditarPaciente.setDisable(false);
-            tablaProgramasInscritos.setItems(pacienteSelect.getProgramas());
             labelId.setText(String.valueOf(pacienteSelect.getId()));
             labelNombre.setText(pacienteSelect.getNombre1()+" "+pacienteSelect.getNombre2());
             labelApellido.setText(pacienteSelect.getApellido1()+" "+pacienteSelect.getApellido2());

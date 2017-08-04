@@ -2,7 +2,10 @@
 package sistema_salud.modelo;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -16,18 +19,18 @@ import javafx.collections.ObservableList;
 
 public class Paciente {
     
-    private final IntegerProperty id;
-    private final StringProperty nombre1;
-    private final StringProperty nombre2;    
-    private final StringProperty apellido1;
-    private final StringProperty apellido2;
-    private final StringProperty tipoDocumento;
-    private final StringProperty documento;
-    private final ObjectProperty <LocalDate> fechaNacimiento;
-    private final StringProperty sexo;
-    private final ObservableList<Programa> programasAccedidos;
+    private Integer id;
+    private String nombre1;
+    private String nombre2;    
+    private String apellido1;
+    private String apellido2;
+    private String tipoDocumento;
+    private String documento;
+    private LocalDate fechaNacimiento;
+    private String sexo;
+    private LinkedList<Programa> programasAccedidos;
     private Eps epsUser;
-    private final BooleanProperty estado;
+    private Boolean estado;
 
     public Paciente(int id, String nombre1, String nombre2,String apellido1, String apellido2,String tipoDocumento ,String documento, LocalDate fechaNacimiento, String sexo, Eps epsUser) throws Exception {
         if (id < 0) { throw new Exception("id No puede ser menor que cero"); }
@@ -40,163 +43,127 @@ public class Paciente {
         if (epsUser == null) { throw new Exception("EpsUSer No puede Ser nulo"); } 
         if (tipoDocumento == null){ throw new Exception("El tipo de documento no puede ser nulo");}
         
-        this.id = new SimpleIntegerProperty(id);
-        this.nombre1 = new SimpleStringProperty(nombre1);
-        this.nombre2 = new SimpleStringProperty(nombre2);
-        this.apellido1 = new SimpleStringProperty(apellido1);
-        this.apellido2 = new SimpleStringProperty(apellido2);
-        this.documento = new SimpleStringProperty(documento);
-        this.sexo = new SimpleStringProperty(sexo);
-        this.tipoDocumento = new SimpleStringProperty(tipoDocumento);
-        this.estado = new SimpleBooleanProperty(true);
+        this.id = id;
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.documento = documento;
+        this.sexo = sexo;
+        this.tipoDocumento = tipoDocumento;
+        this.estado = true;
         this.epsUser = epsUser;
-        this.fechaNacimiento = new SimpleObjectProperty(fechaNacimiento);
-        programasAccedidos = FXCollections.observableArrayList();
+        this.fechaNacimiento = fechaNacimiento;
+        programasAccedidos = new LinkedList<>();
        
     }
 
     public int getId() {
-        return id.get();
+        return id;
     }
 
     public void setId(int id) throws Exception {
         if (id < 0) {
             throw new Exception("ID No puede ser menor que cero");
         } else {
-            this.id.set(id);
+            this.id = id;
         }
     }
     
-    public IntegerProperty idProperty() {
-        return id;
-    }
-
     public String getNombre1() {
-        return nombre1.get();
+        return nombre1;
     }
 
     public void setNombre1(String nombre1) throws Exception {
         if (nombre1 == null) {
             throw new Exception("Primer nombre No puede Ser nulo");
         } else {
-            this.nombre1.set(nombre1);
+            this.nombre1 = nombre1;
         }
     }
     
-    public StringProperty nombre1Property() {
-        return nombre1;
-    }
-
     public String getNombre2() {
-        return nombre2.get();
+        return nombre2;
     }
 
     public void setNombre2(String nombre2) {
-        this.nombre2.set(nombre2);
-    }
-    
-    public StringProperty nombre2Property() {
-        return nombre2;
+        this.nombre2 = nombre2;
     }
     
     public String getApellido1() {
-        return apellido1.get();
+        return apellido1;
     }
 
     public void setApellido1(String apellido1) throws Exception {
         if (apellido1 == null) {
             throw new Exception("APELLIDO1 No puede Ser nulo");
         } else {
-            this.apellido1.set(apellido1);
+            this.apellido1 = apellido1;
         }
     }
     
-    public StringProperty apellido1Property() {
-        return apellido1;
-    }
-
     public String getApellido2() {
-        return apellido2.get();
+        return apellido2;
     }
 
     public void setApellido2(String apellido2) throws Exception {
         if (apellido2 == null) {
             throw new Exception("APELLIDO2 No puede Ser nulo");
         } else {
-            this.apellido2.set(apellido2);
+            this.apellido2 = apellido2;
         }
     }
     
-    public StringProperty apellido2Property() {
-        return apellido2;
-    }
-
     public String getDocumento() {
-        return documento.get();
+        return documento;
     }
 
     public void setDocumento(String documento) throws Exception {
         if (documento == null) {
             throw new Exception("DOCUMENTO No puede Ser nulo");
         } else {
-            this.documento.set(documento);
+            this.documento = documento;
         }
     }
     
-    public StringProperty documentoProperty() {
-        return documento;
-    }
-
     public String getSexo() {
-        return sexo.get();
+        return sexo;
     }
 
     public void setSexo(String sexo) throws Exception {
         if (sexo == null) {
             throw new Exception("SEXO No puede Ser nulo");
         } else {
-            this.sexo.set(sexo);
+            this.sexo = sexo;
         }
     }
     
-    public StringProperty sexoProperty() {
-        return sexo;
-    }
-    
     public String getTipoDocumento() {
-        return tipoDocumento.get();
+        return tipoDocumento;
     }
 
     public void setTipoDocumento(String tipoDocumento) throws Exception {
         if (tipoDocumento == null) {
             throw new Exception("TIPODOCUMENTO No puede Ser nulo");
         } else {
-            this.tipoDocumento.set(tipoDocumento);
+            this.tipoDocumento = tipoDocumento;
         }
     }
     
-    public StringProperty tipoDocumentoProperty() {
-        return tipoDocumento;
-    }
-    
     public LocalDate getFechaNacimiento() {
-        return fechaNacimiento.get();
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento.set(fechaNacimiento);
-    }
-
-    public ObjectProperty<LocalDate> fechaNacimientoProperty() {
         return fechaNacimiento;
     }
 
-    public boolean getEstado() {
-        return estado.get();
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public void setEstado(boolean estado) throws Exception {
-            this.estado.set(estado);
+    public boolean getEstado() {
+        return estado;
+    }
+
+    void setEstado(boolean estado) throws Exception {
+            this.estado = estado;
         
     }
 
@@ -212,16 +179,24 @@ public class Paciente {
         }
     }
     
-    public ObservableList<Programa> getProgramas() {
+    public LinkedList<Programa> getProgramas() {
         return programasAccedidos;
     }
     
     public void activar(){
-        estado.set(true);
+        try {
+            setEstado(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void desactivar(){
-        estado.set(false);
+        try {
+            setEstado(false);
+        } catch (Exception ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
